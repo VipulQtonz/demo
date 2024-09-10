@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
-
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -19,7 +19,6 @@ android {
         targetSdk = 32
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -46,8 +45,10 @@ dependencies {
     implementation(libs.androidx.appcompat.v161)
     implementation(libs.androidx.core.ktx.v1120)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.auth)
+    implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
+    implementation("com.google.firebase:firebase-analytics")
 
-    val room_version = "2.6.1"
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.room.compiler)
     kapt(libs.androidx.room.room.compiler)

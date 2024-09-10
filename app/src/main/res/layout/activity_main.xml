@@ -191,5 +191,12 @@
             android:text="@string/nested_recyclerview"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/btnRegisterWithEmailAndPassWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_in_firebase"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 </ScrollView>

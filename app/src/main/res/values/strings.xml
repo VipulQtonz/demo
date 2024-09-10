@@ -261,4 +261,11 @@
     <string name="category_name">Category Name</string>
     <string name="nested_recyclerview">Nested RecyclerView</string>
     <string name="hide_show">hide/Show</string>
+    <string name="register_in_firebase">Register in firebase</string>
+    <string name="please_enter_email_and_password">Please enter email and password</string>
+    <string name="createuserwithemail_success">createUserWithEmail:success</string>
+    <string name="registration_success">Registration Success</string>
+    <string name="createuserwithemail_failure">createUserWithEmail:failure</string>
+    <string name="registration_failed">Registration Failed: %1$s</string>
+    <string name="loginactivity">LoginActivity</string>
 </resources>

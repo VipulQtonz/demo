@@ -25,6 +25,7 @@ import com.example.programingdemo.activities.ActivityRecyclerView
 import com.example.programingdemo.activities.ActivityServiceDemo
 import com.example.programingdemo.activities.ActivityViewPager
 import com.example.programingdemo.activities.ActivityWhatsapp
+import com.example.programingdemo.activities.LoginActivity
 import com.example.programingdemo.appFlowDemo.ActivitySplashScreen
 import com.example.programingdemo.databinding.ActivityMainBinding
 import com.example.programingdemo.intent.ActivityExplicitIntentDemoOne
@@ -91,6 +92,7 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
         binding.btnFindSongs.setOnClickListener(this)
         binding.btnRoomDatabase.setOnClickListener(this)
         binding.btnNestedRecyclerView.setOnClickListener(this)
+        binding.btnRegisterWithEmailAndPassWord.setOnClickListener(this)
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -189,6 +191,10 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btnNestedRecyclerView -> {
                 startActivity(Intent(this@ActivityMain, ActivityNestedRecyclerView::class.java))
+            }
+
+            R.id.btnRegisterWithEmailAndPassWord -> {
+                startActivity(Intent(this@ActivityMain, LoginActivity::class.java))
             }
 
             R.id.btnStaticDemo -> {

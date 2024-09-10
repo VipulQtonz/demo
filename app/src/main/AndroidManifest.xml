@@ -45,6 +45,9 @@
         android:theme="@style/Theme.ProgramingDemo"
         tools:targetApi="31">
         <activity
+            android:name=".activities.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ActivityNestedRecyclerView"
             android:exported="false" />
         <activity
