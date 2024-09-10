@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".room.ActivityRoomDatabase">
+
+    <LinearLayout
+        android:id="@+id/llEditData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".intent.ActivityImplicitIntentDemoOne">
+
+        <EditText
+            android:id="@+id/edtUserName"
+            style="@style/editTextBMI"
+            android:autofillHints=""
+            android:hint="@string/enter_user_name"
+            android:inputType="textEmailAddress"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+        <EditText
+            android:id="@+id/edtUserEmail"
+            style="@style/editTextBMI"
+            android:autofillHints=""
+            android:hint="@string/enter_valid_email_address"
+            android:inputType="textEmailSubject"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+        <Button
+            android:id="@+id/btnSave"
+            style="@style/btnBMI"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            tools:ignore="TextContrastCheck" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rwRoom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llEditData" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

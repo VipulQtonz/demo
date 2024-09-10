@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentGreen">
+
+    <fragment
+        android:id="@+id/fragmentGreen"
+        android:name="com.example.programingdemo.fragments.FragmentGreen"
+        android:label="fragment_green"
+        tools:layout="@layout/fragment_green">
+        <action
+            android:id="@+id/action_fragmentGreen_to_fragmentRed"
+            app:destination="@id/fragmentRed" />
+        <action
+            android:id="@+id/action_fragmentGreen_to_fragmentYellow"
+            app:destination="@id/fragmentYellow" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentRed"
+        android:name="com.example.programingdemo.fragments.FragmentRed"
+        android:label="fragment_red"
+        tools:layout="@layout/fragment_red">
+        <action
+            android:id="@+id/action_fragmentRed_to_fragmentGreen"
+            app:destination="@id/fragmentGreen" />
+        <action
+            android:id="@+id/action_fragmentRed_to_fragmentYellow"
+            app:destination="@id/fragmentYellow" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentYellow"
+        android:name="com.example.programingdemo.fragments.FragmentYellow"
+        android:label="fragment_yellow"
+        tools:layout="@layout/fragment_yellow">
+        <action
+            android:id="@+id/action_fragmentYellow_to_fragmentRed"
+            app:destination="@id/fragmentRed" />
+        <action
+            android:id="@+id/action_fragmentYellow_to_fragmentGreen2"
+            app:destination="@id/fragmentGreen" />
+    </fragment>
+</navigation>

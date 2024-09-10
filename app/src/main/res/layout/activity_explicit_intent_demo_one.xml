@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llExplicitIntentDemoOneMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".intent.ActivityExplicitIntentDemoOne">
+
+    <LinearLayout
+        android:id="@+id/llMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dp_20"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvFirstName"
+            style="@style/textLabelBMI"
+            android:text="@string/first_name"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/edtFirstName"
+            style="@style/editTextBMI"
+            android:autofillHints=""
+            android:hint="@string/enter_your_first_name"
+            android:inputType="textEmailAddress"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+        <TextView
+            android:id="@+id/tvLastName"
+            style="@style/textLabelBMI"
+            android:text="@string/last_name"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/edtLastName"
+            style="@style/editTextBMI"
+            android:autofillHints=""
+            android:hint="@string/enter_your_last_name"
+            android:inputType="textEmailSubject"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            style="@style/textLabelBMI"
+            android:text="@string/email" />
+
+        <EditText
+            android:id="@+id/edtEmail"
+            style="@style/editTextBMI"
+            android:autofillHints=""
+            android:hint="@string/enter_valid_email_address"
+            android:inputType="textEmailAddress"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+
+        <TextView
+            android:id="@+id/tvMobileNumber"
+            style="@style/textLabelBMI"
+            android:text="@string/mobile_number" />
+
+        <EditText
+            android:id="@+id/edtMobileNumber"
+            style="@style/editTextBMI"
+            android:autofillHints=""
+            android:hint="@string/enter_mobile_number"
+            android:inputType="number"
+            android:maxLength="10"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+
+        <TextView
+            android:id="@+id/tvAddress"
+            style="@style/textLabelBMI"
+            android:text="@string/address" />
+
+        <EditText
+            android:id="@+id/edtAddress"
+            style="@style/editTextBMI"
+            android:autofillHints=""
+            android:hint="@string/enter_your_address"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+
+        <Button
+            android:id="@+id/btnSendData"
+            style="@style/btnBMI"
+            android:text="@string/send_data"
+            android:textAllCaps="false"
+            tools:ignore="TextContrastCheck" />
+    </LinearLayout>
+</LinearLayout>

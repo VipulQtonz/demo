@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.whatsapp.FragmentCalls">
+
+    <LinearLayout
+        android:id="@+id/llMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgLink"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:contentDescription="@string/link"
+            android:src="@drawable/link_bg" />
+
+        <LinearLayout
+            android:id="@+id/llData"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".8"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/tvCreateLink"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"
+                android:text="@string/create_call_link"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                tools:ignore="NestedWeights" />
+
+            <TextView
+                android:id="@+id/tvShareLink"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"
+                android:text="@string/share_a_link_for_you_whatsapp_call"
+                android:textColor="@color/blackOne" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvRecent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:text="@string/recent_"
+        android:textColor="@color/blackOne"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llMain"
+        tools:ignore="NestedWeights" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rwWhatsAppCall"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        android:layout_marginHorizontal="@dimen/dp_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRecent"
+        tools:listitem="@layout/single_item_for_call" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

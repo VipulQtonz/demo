@@ -1,0 +1,214 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ProgramingDemo" parent="Theme.Design.Light.NoActionBar"/>
+
+    <style name="Theme.ProgramingDemo" parent="Base.Theme.ProgramingDemo" />
+
+    <style name="textLabelBMI">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/dp_10</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
+
+    <style name="editTextBMI">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/dp_6</item>
+        <item name="android:background">@drawable/edittext_border</item>
+        <item name="android:gravity">start</item>
+        <item name="android:padding">@dimen/dp_14</item>
+        <item name="android:textSize">@dimen/sp_18</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="btnBMI">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">@dimen/dp_20</item>
+        <item name="android:background">@drawable/custom_btn</item>
+        <item name="android:backgroundTint">@color/parrot</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/sp_20</item>
+        <item name="android:paddingEnd">@dimen/sp_40</item>
+        <item name="android:paddingStart">@dimen/sp_40</item>
+    </style>
+
+    <!--    new-->
+
+    <style name="textOne">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/dp_10</item>
+        <item name="android:textColor">@color/blackOne</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
+    <style name="editTextOne">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/dp_6</item>
+        <item name="android:layout_marginBottom">@dimen/dp_6</item>
+        <item name="android:background">@drawable/edittext_border_new</item>
+        <item name="android:gravity">start</item>
+        <item name="android:textColorHint">@color/waterWhiteTwo</item>
+        <item name="android:padding">@dimen/dp_14</item>
+        <item name="android:textSize">@dimen/sp_18</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="btnOne">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+    <!--    new-->
+
+
+    <!--    &lt;!&ndash; Base styles &ndash;&gt;-->
+    <!--    <style name="BaseTextViewStyle">-->
+    <!--        <item name="android:layout_width">wrap_content</item>-->
+    <!--        <item name="android:layout_height">wrap_content</item>-->
+    <!--        <item name="android:textSize">@dimen/sp_16</item>-->
+    <!--        <item name="android:textColor">@color/blackOne</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="BaseLinearLayoutStyle">-->
+    <!--        <item name="android:layout_width">match_parent</item>-->
+    <!--        <item name="android:layout_height">wrap_content</item>-->
+    <!--        <item name="android:orientation">horizontal</item>-->
+    <!--        <item name="android:layout_marginStart">20dp</item>-->
+    <!--        <item name="android:layout_marginEnd">20dp</item>-->
+    <!--        <item name="android:layout_marginTop">10dp</item>-->
+    <!--        <item name="android:layout_marginBottom">4dp</item>-->
+    <!--        <item name="android:weightSum">1</item>-->
+    <!--    </style>-->
+
+    <!--    &lt;!&ndash; TextView Styles &ndash;&gt;-->
+    <!--    <style name="LabelTextStyle" parent="BaseTextViewStyle">-->
+    <!--        <item name="android:textColor">@color/waterWhiteOne</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="ValueTextStyle" parent="BaseTextViewStyle">-->
+    <!--        <item name="android:layout_weight">.6</item>-->
+    <!--    </style>-->
+
+    <!--    &lt;!&ndash; ImageView Styles &ndash;&gt;-->
+    <!--    <style name="BackImageStyle">-->
+    <!--        <item name="android:layout_width">@dimen/dp_40</item>-->
+    <!--        <item name="android:layout_height">@dimen/dp_40</item>-->
+    <!--        <item name="android:contentDescription">@string/user_profile_picture</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="ProfileImageStyle">-->
+    <!--        <item name="android:layout_width">@dimen/dp_108</item>-->
+    <!--        <item name="android:layout_height">@dimen/dp_108</item>-->
+    <!--        <item name="android:contentDescription">@string/user_profile_picture</item>-->
+    <!--        <item name="android:layout_gravity">center</item>-->
+    <!--        <item name="android:layout_marginTop">16dp</item>-->
+    <!--    </style>-->
+
+    <!--    &lt;!&ndash; CardView Style &ndash;&gt;-->
+    <!--    <style name="CardViewStyle">-->
+    <!--        <item name="android:layout_width">match_parent</item>-->
+    <!--        <item name="android:layout_height">wrap_content</item>-->
+    <!--    </style>-->
+
+    <!--    &lt;!&ndash; Toolbar Text Style &ndash;&gt;-->
+    <!--    <style name="ToolbarTitleStyle" parent="BaseTextViewStyle">-->
+    <!--        <item name="android:textSize">@dimen/sp_18</item>-->
+    <!--        <item name="android:textStyle">bold</item>-->
+    <!--        <item name="android:textColor">@color/black</item>-->
+    <!--    </style>-->
+
+
+    <style name="smallTextDeclarationIntro">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/dp_20</item>
+        <item name="android:layout_marginTop">@dimen/dp_10</item>
+        <item name="android:layout_marginEnd">@dimen/dp_20</item>
+        <item name="android:layout_marginBottom">@dimen/dp_10</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="smallRedTextIntro">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+    <style name="smallSmallTextIntro">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/dp_20</item>
+        <item name="android:layout_marginTop">@dimen/dp_20</item>
+        <item name="android:layout_marginEnd">@dimen/dp_20</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="buttonIntro">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/dp_20</item>
+        <item name="android:layout_marginBottom">@dimen/dp_20</item>
+        <item name="android:textSize">@dimen/sp_20</item>
+        <item name="android:paddingStart">@dimen/dp_100</item>
+        <item name="android:paddingEnd">@dimen/dp_100</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/dp_10</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@drawable/custom_btn</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="smallTextIntro">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/dp_24</item>
+        <item name="android:textSize">@dimen/sp_18</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="mainTheme">
+        <item name="android:background">@drawable/splash_bg</item>
+    </style>
+
+    <style name="logo">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/dp_50</item>
+
+    </style>
+
+    <style name="imageView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/dp_20</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="smallText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
+</resources>

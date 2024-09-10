@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llRecieveDataFromExplicitIntentMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".intent.ActivityRecieveDataFromExplicitEntent">
+
+    <LinearLayout
+        android:id="@+id/llMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/dp_20"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tvFirstName"
+            style="@style/textLabelBMI"
+            android:text="@string/first_name"
+            android:textColor="@color/black" />
+
+
+        <TextView
+            android:id="@+id/tvLastName"
+            style="@style/textLabelBMI"
+            android:text="@string/last_name"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            style="@style/textLabelBMI"
+            android:text="@string/email" />
+
+
+        <TextView
+            android:id="@+id/tvMobileNumber"
+            style="@style/textLabelBMI"
+            android:text="@string/mobile_number" />
+
+
+        <TextView
+            android:id="@+id/tvAddress"
+            style="@style/textLabelBMI"
+            android:text="@string/address" />
+
+
+        <Button
+            android:id="@+id/btnBack"
+            style="@style/btnBMI"
+            android:text="@string/back"
+            android:textAllCaps="false"
+            tools:ignore="TextContrastCheck" />
+    </LinearLayout>
+
+
+</LinearLayout>

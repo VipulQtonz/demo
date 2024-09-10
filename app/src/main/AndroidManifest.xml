@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <permission
+        android:name="com.example.programingdemo.PERMISSION_READ"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.example.programingdemo.PERMISSION_WRITE"
+        android:protectionLevel="normal" />
+
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ProgramingDemo"
+        tools:targetApi="31">
+        <activity
+            android:name=".activities.ActivityNestedRecyclerView"
+            android:exported="false" />
+        <activity
+            android:name=".room.ActivityRoomDatabase"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityEditContact"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityFindSongs"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityContactList"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityDeviceImage"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityGestures"
+            android:exported="false" />
+        <activity
+            android:name=".fragments.whatsapp.activity.ActivityWhatsAppChatDetails"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityWhatsapp"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityContentProvider"
+            android:exported="false" />
+
+        <provider
+            android:name=".contentProvider.ContentProviderMy"
+            android:authorities="com.example.programingdemo.ContentProviderMy"
+            android:enabled="true"
+            android:exported="true"
+            android:grantUriPermissions="true"
+            android:readPermission="com.example.programingdemo.PERMISSION_READ"
+            android:writePermission="com.example.programingdemo.PERMISSION_WRITE">
+            <intent-filter>
+                <action android:name="android.content.Intent.ACTION_PROVIDER" />
+            </intent-filter>
+        </provider>
+
+        <activity
+            android:name=".activities.ActivityRecyclerView"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityNavigationDrawer"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityBottomNavigationBar"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityNavGraph"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityImageSlider"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityViewPager"
+            android:exported="false" />
+
+        <receiver
+            android:name=".broadCastReceiver.ReceiverStaticBroadcast"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.AIRPLANE_MODE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".activities.ActivityAsyncTaskDemo"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityReceiverDemo"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityReceiveFromOtherApplication"
+            android:exported="false" />
+
+        <service
+            android:name=".services.ServiceReceivedIntent"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver
+            android:name=".broadCastReceiver.ReceiverIntentData"
+            android:enabled="true"
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.example.RECEIVER_ACTION" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".appFlowDemo.ActivityIntroScreen"
+            android:exported="false" />
+        <activity
+            android:name=".appFlowDemo.ActivitySplashScreen"
+            android:exported="true" />
+        <activity
+            android:name=".sharedPrefrences.ActivityGetSharedPrefData"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityServiceDemo"
+            android:exported="false" />
+
+        <service
+            android:name=".services.ServiceIntent"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.FOREGROUND_SERVICE" />
+
+        <activity
+            android:name=".sharedPrefrences.ActivitySharedPrefrences"
+            android:exported="false" />
+        <activity
+            android:name=".userDetails.ActivityEditUserDetails"
+            android:exported="false" />
+        <activity
+            android:name=".userDetails.ActivityUserDetailsPreview"
+            android:exported="false" />
+        <activity
+            android:name=".intent.ActivityRecieveDataFromExplicitEntent"
+            android:exported="false" />
+        <activity
+            android:name=".intent.ActivityNotificationDemo"
+            android:exported="false" />
+        <activity
+            android:name=".intent.ActivityExplicitIntentDemoOne"
+            android:exported="false" />
+        <activity
+            android:name=".intent.ActivityImplicitIntentDemoTwo"
+            android:exported="false" />
+        <activity
+            android:name=".intent.ActivityImplicitIntentDemoOne"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityMain"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

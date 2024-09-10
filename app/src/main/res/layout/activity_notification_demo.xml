@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ImplicitIntentDemoTwoMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".intent.ActivityNotificationDemo">
+
+    <LinearLayout
+        android:id="@+id/llMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dp_20"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/edtNotificationTitle"
+            style="@style/editTextBMI"
+            android:autofillHints=""
+            android:hint="@string/enter_notification_title"
+            android:inputType="text"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+
+        <EditText
+            android:id="@+id/edtNotificationDescription"
+            style="@style/editTextBMI"
+            android:autofillHints=""
+            android:hint="@string/enter_notification_description"
+            android:inputType="text"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+        <LinearLayout
+            android:id="@+id/llInneMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnNotificationHigh"
+                style="@style/btnBMI"
+                android:text="@string/high"
+                android:textAllCaps="false"
+                tools:ignore="TextContrastCheck" />
+
+            <Button
+                android:id="@+id/btnNotificationLow"
+                style="@style/btnBMI"
+                android:text="@string/low"
+                android:textAllCaps="false"
+                tools:ignore="TextContrastCheck" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

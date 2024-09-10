@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="whiteOne">#ffffff</color>
+    <color name="lightWhiteOne">#FFE9E1</color>
+    <color name="lightWhite">#A5A2A2</color>
+    <color name="lightWhiteThree">#E9EBDE</color>
+    <color name="lightWhiteTwo">#22FFFFFF</color>
+    <color name="greenOne">#07C672</color>
+    <color name="green">#00AD61</color>
+    <color name="parrot">#90A363</color>
+    <color name="waterWhite">#F2F3F4</color>
+    <color name="waterWhiteOne">#737780</color>
+    <color name="waterWhiteTwo">#94979F</color>
+    <color name="waterWhiteThree">#EAEAEC</color>
+    <color name="blackOne">#2A303E</color>
+    <color name="blackTwo">#5B5F65</color>
+    <color name="red">#BF283E</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="WhiteNew">#EAEAEC</color>
+    <color name="grey">#325666</color>
+    <color name="whatsAppStatusColor">#075f56</color>
+    <color name="redMessage">#4FA2E8</color>
+</resources>

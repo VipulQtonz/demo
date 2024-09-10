@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activityWhatsAppChatMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.whatsapp.activity.ActivityWhatsAppChatDetails">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whatsAppStatusColor"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgBackToChat"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:layout_marginVertical="@dimen/dp_4"
+            android:layout_marginStart="@dimen/dp_10"
+            android:contentDescription="@string/profile_image"
+            android:src="@drawable/back_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgProfilePictureChat"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_margin="@dimen/dp_8"
+            android:contentDescription="@string/edit"
+            android:src="@drawable/user_profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgBackToChat"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/llChatDetailsData"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_6"
+            android:layout_marginEnd="@dimen/dp_6"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:weightSum="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imgVoiceCall"
+            app:layout_constraintStart_toEndOf="@+id/imgProfilePictureChat"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvDisplayName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:text="@string/vipul_jadav"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_14"
+                android:textStyle="bold"
+                tools:ignore="NestedWeights" />
+
+            <TextView
+                android:id="@+id/tvLastSeen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:text="@string/last_seen_today_11_30_am"
+                android:textColor="@color/waterWhiteThree"
+                android:textSize="@dimen/sp_10"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:ignore="NestedWeights" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgVoiceCall"
+            android:layout_width="@dimen/dp_26"
+            android:layout_height="@dimen/dp_26"
+            android:layout_margin="@dimen/dp_8"
+            android:contentDescription="@string/profile_image"
+            android:src="@drawable/call_svg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imgVideoCall"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/imgVideoCall"
+            android:layout_width="@dimen/dp_26"
+            android:layout_height="@dimen/dp_26"
+            android:layout_margin="@dimen/dp_8"
+            android:contentDescription="@string/profile_image"
+            android:src="@drawable/video_svg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imgChatDetailsMenu"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/imgChatDetailsMenu"
+            android:layout_width="@dimen/dp_26"
+            android:layout_height="@dimen/dp_26"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:contentDescription="@string/edit"
+            android:src="@drawable/menu_vertical_svg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

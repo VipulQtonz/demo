@@ -1,0 +1,65 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_4"
+    android:background="@drawable/edittext_border"
+    android:backgroundTint="@color/waterWhiteThree"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvUserName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4"
+        android:layout_marginStart="@dimen/dp_10"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvUserEmail"
+        app:layout_constraintEnd_toStartOf="@id/glMain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvUserEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/dp_4"
+        android:layout_marginStart="@dimen/dp_10"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/glMain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvUserName" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="80dp" />
+
+    <ImageView
+        android:id="@+id/imgEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_4"
+        android:contentDescription="@string/edit"
+        android:src="@drawable/edit_svg"
+        app:layout_constraintStart_toStartOf="@id/glMain"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:contentDescription="@string/delete"
+        android:src="@drawable/delete_svg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgEdit"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

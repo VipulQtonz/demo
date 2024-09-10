@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/dp_10"
+    android:orientation="horizontal"
+    android:weightSum=".8">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgImageDp"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:contentDescription="@string/link"
+        android:src="@drawable/user_profile" />
+
+    <LinearLayout
+        android:id="@+id/llData"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".7"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/tvDisplayName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:text="@string/vipul_jadav"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold"
+            tools:ignore="NestedWeights" />
+
+        <LinearLayout
+            android:id="@+id/tvDetails"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgCallTypeAction"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".1"
+                android:contentDescription="@string/link"
+                android:padding="@dimen/dp_2"
+                android:src="@drawable/arrow_left_down_svg"
+                app:tint="@color/red" />
+
+            <TextView
+                android:id="@+id/tvCallDetails"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".9"
+                android:text="@string/today_11_30_am"
+                android:textColor="@color/blackTwo"
+                android:textStyle="bold"
+                tools:ignore="NestedWeights" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgCallType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_weight=".1"
+        android:contentDescription="@string/link"
+        android:src="@drawable/video_svg" />
+</LinearLayout>

@@ -1,0 +1,4 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.ProgramingDemo" parent="Theme.Design.Light.NoActionBar">
+    </style>
+</resources>

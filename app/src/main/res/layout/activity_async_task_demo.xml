@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ActivityAsyncTaskMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".activities.ActivityAsyncTaskDemo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/flRefresh"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/imgProfilePicture"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/dp_20"
+                android:contentDescription="@string/user_profile_picture"
+                android:scaleType="fitXY"
+                android:src="@drawable/file_unknown_svgrepo_com" />
+
+            <ProgressBar
+                android:id="@+id/pbMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvWait"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_36"
+                android:text="@string/please_wait"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/llFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".4"
+                android:gravity="end"
+                android:text="@string/developer_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/tvDeveloperNameError"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:text="@string/something_we_nt_wrong"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".4"
+                android:gravity="end"
+                android:text="@string/position"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/tvPositionError"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:text="@string/something_we_nt_wrong"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_50"
+            android:text="@string/refresh"
+            android:textAllCaps="false"
+            android:textSize="@dimen/sp_20" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

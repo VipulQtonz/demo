@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".fragments.FragmentMyBottomSheet">
+
+    <LinearLayout
+        android:id="@+id/llEnterUserDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_20"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvFirstName"
+            style="@style/textOne"
+            android:layout_marginTop="@dimen/dp_0"
+            android:text="@string/first_name" />
+
+        <EditText
+            android:id="@+id/edtFirstName"
+            style="@style/editTextOne"
+            android:autofillHints="first name"
+            android:cursorVisible="true"
+            android:hint="@string/enter_first_name_here"
+            android:inputType="text"
+            android:textCursorDrawable="@drawable/cursor_color"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+        <TextView
+            android:id="@+id/tvLastName"
+            style="@style/textOne"
+            android:text="@string/last_name" />
+
+        <EditText
+            android:id="@+id/edtLastName"
+            style="@style/editTextOne"
+            android:autofillHints="first name"
+            android:hint="@string/enter_last_name_here"
+            android:inputType="text"
+            android:textCursorDrawable="@drawable/cursor_color"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            style="@style/textOne"
+            android:text="@string/email" />
+
+        <EditText
+            android:id="@+id/edtEmail"
+            style="@style/editTextOne"
+            android:autofillHints="first name"
+            android:hint="@string/_enter_email"
+            android:inputType="textEmailAddress"
+            android:textCursorDrawable="@drawable/cursor_color"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+        <TextView
+            android:id="@+id/tvMobileNumber"
+            style="@style/textOne"
+            android:text="@string/_mobile_no" />
+
+        <EditText
+            android:id="@+id/edtMobileNumber"
+            style="@style/editTextOne"
+            android:autofillHints="first name"
+            android:hint="@string/enter_mobile_no"
+            android:inputType="number"
+            android:maxLength="10"
+            android:textCursorDrawable="@drawable/cursor_color"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+        <TextView
+            android:id="@+id/tvGender"
+            style="@style/textOne"
+            android:text="@string/select_gender" />
+
+        <LinearLayout
+            android:id="@+id/llGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum=".3">
+
+            <LinearLayout
+                android:id="@+id/llMale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:layout_weight=".1"
+                android:background="@drawable/edittext_border_new"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dp_16"
+                android:paddingBottom="@dimen/dp_16">
+
+                <ImageView
+                    android:id="@+id/imgMale"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginEnd="@dimen/dp_4"
+                    android:contentDescription="@string/unfill_radio"
+                    android:src="@drawable/un_fill_radio_button" />
+
+                <TextView
+                    android:id="@+id/tvMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_4"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    android:text="@string/male"
+                    android:textSize="@dimen/sp_14" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/llFemale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:layout_weight=".1"
+                android:background="@drawable/edittext_border_new"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dp_16"
+                android:paddingBottom="@dimen/dp_16"
+                android:text="@string/female">
+
+                <ImageView
+                    android:id="@+id/imgFemale"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginEnd="@dimen/dp_4"
+                    android:contentDescription="@string/unfill_radio"
+                    android:src="@drawable/un_fill_radio_button" />
+
+                <TextView
+                    android:id="@+id/tvFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_4"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    android:text="@string/female"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llOther"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight=".1"
+                android:background="@drawable/edittext_border_new"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dp_16"
+                android:paddingBottom="@dimen/dp_16"
+                android:text="@string/other"
+                android:textSize="@dimen/sp_14">
+
+                <ImageView
+                    android:id="@+id/imgOther"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginEnd="@dimen/dp_4"
+                    android:contentDescription="@string/unfill_radio"
+                    android:src="@drawable/un_fill_radio_button" />
+
+                <TextView
+                    android:id="@+id/tvOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_4"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    android:text="@string/other"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/rdGroupError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/please_select_a_gender"
+            android:textColor="@color/red"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvHobby"
+            style="@style/textOne"
+            android:text="@string/select_hobby" />
+
+        <LinearLayout
+            android:id="@+id/HobbyMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llHobbyLineOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_5"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum=".3">
+
+                <LinearLayout
+                    android:id="@+id/llHobbySport"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:layout_weight=".1"
+                    android:background="@drawable/edittext_border_new"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_14"
+                    android:paddingEnd="@dimen/dp_8"
+                    android:paddingBottom="@dimen/dp_14">
+
+                    <CheckBox
+                        android:id="@+id/cbSport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/checkbox_selector"
+                        android:paddingStart="@dimen/dp_2"
+                        android:paddingEnd="@dimen/dp_0"
+                        android:text="@string/sport"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llHobbyReading"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:layout_weight=".1"
+                    android:background="@drawable/edittext_border_new"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_14"
+                    android:paddingEnd="@dimen/dp_8"
+                    android:paddingBottom="@dimen/dp_14">
+
+                    <CheckBox
+                        android:id="@+id/cbReading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/checkbox_selector"
+                        android:paddingStart="@dimen/dp_2"
+                        android:paddingEnd="@dimen/dp_0"
+                        android:text="@string/reading"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llHobbyMusic"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1"
+                    android:background="@drawable/edittext_border_new"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_14"
+                    android:paddingEnd="@dimen/dp_8"
+                    android:paddingBottom="@dimen/dp_14">
+
+                    <CheckBox
+                        android:id="@+id/cbMusic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/checkbox_selector"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/dp_2"
+                        android:paddingEnd="@dimen/dp_0"
+                        android:text="@string/music"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llHobbyLineTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum=".3">
+
+                <LinearLayout
+                    android:id="@+id/llHobbyDrawing"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:layout_weight=".1"
+                    android:background="@drawable/edittext_border_new"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_14"
+                    android:paddingEnd="@dimen/dp_8"
+                    android:paddingBottom="@dimen/dp_14">
+
+                    <CheckBox
+                        android:id="@+id/cbDrawing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/checkbox_selector"
+                        android:paddingStart="@dimen/dp_2"
+                        android:paddingEnd="@dimen/dp_0"
+                        android:text="@string/drawing"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llHobbyPainting"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:layout_weight=".1"
+                    android:background="@drawable/edittext_border_new"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_14"
+                    android:paddingEnd="@dimen/dp_8"
+                    android:paddingBottom="@dimen/dp_14">
+
+                    <CheckBox
+                        android:id="@+id/cbPainting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/checkbox_selector"
+                        android:paddingStart="@dimen/dp_2"
+                        android:paddingEnd="@dimen/dp_0"
+                        android:text="@string/painting"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvCheckBoxError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/please_select_at_least_one_option"
+            android:textColor="@color/red"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvAddress"
+            style="@style/textOne"
+            android:text="@string/_enter_address" />
+
+        <EditText
+            android:id="@+id/edtAdress"
+            style="@style/editTextOne"
+            android:autofillHints="first name"
+            android:hint="@string/__enter_address"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:textCursorDrawable="@drawable/cursor_color"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+
+        <TextView
+            android:id="@+id/tvState"
+            style="@style/textOne"
+            android:text="@string/select_state" />
+
+        <LinearLayout
+            android:id="@+id/llStateSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginBottom="@dimen/dp_6"
+            android:background="@drawable/edittext_border_new">
+
+            <Spinner
+                android:id="@+id/spState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/dp_4"
+                android:paddingTop="@dimen/dp_20"
+                android:paddingEnd="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_20" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvStateError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/please_select_state"
+            android:textColor="@color/red"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvCity"
+            style="@style/textOne"
+            android:text="@string/select_city" />
+
+
+        <LinearLayout
+            android:id="@+id/llCitySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginBottom="@dimen/dp_6"
+            android:background="@drawable/edittext_border_new">
+
+            <Spinner
+                android:id="@+id/spCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/dp_4"
+                android:paddingTop="@dimen/dp_20"
+                android:paddingEnd="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_20" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvCityError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/please_select_city"
+            android:textColor="@color/red"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/llProfilePic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginBottom="@dimen/dp_6"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvProfilePic"
+                style="@style/textOne"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_0"
+                android:layout_marginEnd="@dimen/dp_14"
+                android:gravity="center"
+                android:text="@string/upload_profile_pic" />
+
+            <Button
+                android:id="@+id/btnBrowse"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_bg"
+                android:gravity="center"
+                android:text="@string/browse"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                tools:ignore="TextContrastCheck" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvImageError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/please_select_image"
+            android:textColor="@color/red"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCancel"
+                style="@style/btnOne"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_weight=".5"
+                android:background="@drawable/btn_bg"
+                android:backgroundTint="@color/WhiteNew"
+                android:text="@string/cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/waterWhiteTwo"
+                tools:ignore="TextContrastCheck" />
+
+            <Button
+                android:id="@+id/btnSubmit"
+                style="@style/btnOne"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_weight=".5"
+                android:background="@drawable/btn_bg"
+                android:text="@string/_submit"
+                android:textAllCaps="false"
+                tools:ignore="TextContrastCheck" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+

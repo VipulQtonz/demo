@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clSplashScreenMain"
+    style="@style/mainTheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".appFlowDemo.ActivitySplashScreen">
+
+    <ImageView
+        android:id="@+id/imgLogoText"
+        style="@style/logo"
+        android:contentDescription="@string/app_logo"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <FrameLayout
+        android:id="@+id/flMiddleContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/tvDevelopedBy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgLogoText">
+
+        <ImageView
+            android:id="@+id/imgLogoBackground"
+            style="@style/imageView"
+            android:contentDescription="@string/logo_text"
+            android:scaleType="fitXY"
+            android:src="@drawable/map" />
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            style="@style/imageView"
+            android:layout_width="wrap_content"
+            android:contentDescription="@string/logo_text"
+            android:src="@drawable/image" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvDevelopedBy"
+        style="@style/smallText"
+        android:text="@string/designed_and_developed_by"
+        app:layout_constraintBottom_toTopOf="@+id/imgDeveloperName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgDeveloperName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/logo_text"
+        android:src="@drawable/shadow_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

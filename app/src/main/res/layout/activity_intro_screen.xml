@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llIntroScreenMain"
+    style="@style/mainTheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".appFlowDemo.ActivityIntroScreen">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/flLauncher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            app:layout_constraintBottom_toTopOf="@+id/llScroll"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgLogoBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/sp_24"
+                android:contentDescription="@string/logo_text"
+                android:scaleType="fitXY"
+                android:src="@drawable/map" />
+
+            <ImageView
+                android:id="@+id/imgLogo"
+                style="@style/imageView"
+                android:layout_width="wrap_content"
+                android:contentDescription="@string/logo_text"
+                android:src="@drawable/image" />
+
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/llScroll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/btnStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/flLauncher">
+
+            <ScrollView
+                android:id="@+id/swOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toTopOf="@+id/btnStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flLauncher">
+
+                <LinearLayout
+                    android:id="@+id/llDescriptionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:id="@+id/tvContentDescription"
+                        style="@style/smallTextIntro"
+                        android:text="@string/textContentOne"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/btnStart"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/flLauncher" />
+
+                </LinearLayout>
+
+
+            </ScrollView>
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnStart"
+            style="@style/buttonIntro"
+            android:text="@string/start"
+            app:layout_constraintBottom_toTopOf="@+id/tvDeclaration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDeclaration"
+            style="@style/smallSmallTextIntro"
+            android:text="@string/term_and_condition_text"
+            app:layout_constraintBottom_toTopOf="@+id/llTermAndPrivacy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@id/llTermAndPrivacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/tvDeclarationLast"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/tvPrivacyPolicy"
+                style="@style/smallRedTextIntro"
+                android:text="@string/privacy_policy" />
+
+            <TextView
+                android:id="@+id/tvAnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_4"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:gravity="center"
+                android:text="@string/and"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTermsOfServices"
+                style="@style/smallRedTextIntro"
+                android:text="@string/terms_of_services" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvDeclarationLast"
+            style="@style/smallTextDeclarationIntro"
+            android:text="@string/all_information_provided_by_us_is_for_entertainment_purposes_only"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
