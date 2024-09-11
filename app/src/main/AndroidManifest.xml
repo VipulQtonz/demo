@@ -45,7 +45,13 @@
         android:theme="@style/Theme.ProgramingDemo"
         tools:targetApi="31">
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".realTimeDatabase.ActivityRealTimeDatabase"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityMobileNumberVarification"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityLogin"
             android:exported="false" />
         <activity
             android:name=".activities.ActivityNestedRecyclerView"

@@ -1,45 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/LoginActivityMain"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.LoginActivity">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/llEditData"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/dp_20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context=".intent.ActivityImplicitIntentDemoOne">
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_20"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/dp_20"
+            app:cardElevation="@dimen/dp_10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_200"
+                android:layout_margin="@dimen/dp_4"
+                android:contentDescription="TODO"
+                android:src="@drawable/undraw_login_svg"
+                tools:ignore="ContentDescription,HardcodedText" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cvSlider"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:text="@string/login"
+            android:textColor="@color/lightRed"
+            android:textSize="@dimen/sp_30"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtEmail"
-            style="@style/editTextBMI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvLogin"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginVertical="@dimen/dp_4"
             android:autofillHints=""
-            android:hint="@string/enter_user_name"
-            android:inputType="textEmailAddress"
-            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+            android:background="@drawable/custom_edt_user"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textWebEmailAddress"
+            android:minHeight="@dimen/dp_48"
+            android:padding="@dimen/dp_16"
+            tools:ignore="LabelFor,VisualLintTextFieldSize,TextContrastCheck" />
 
         <EditText
             android:id="@+id/edtPassword"
-            style="@style/editTextBMI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtEmail"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginVertical="@dimen/dp_4"
             android:autofillHints=""
-            android:hint="@string/enter_valid_email_address"
+            android:background="@drawable/custom_edt_user"
+            android:ems="10"
+            android:hint="@string/password"
+            android:importantForAccessibility="no"
             android:inputType="numberPassword"
-            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck,VisualLintTextFieldSize" />
+            android:minHeight="@dimen/dp_48"
+            android:padding="@dimen/dp_16"
+            tools:ignore="LabelFor,TextContrastCheck,TextFields,VisualLintTextFieldSize" />
 
-        <Button
-            android:id="@+id/btnSave"
-            style="@style/btnBMI"
-            android:text="@string/save"
-            android:textAllCaps="false"
-            tools:ignore="TextContrastCheck" />
-    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtPassword"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:text="@string/forgot_password"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="italic"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_80"
+            android:layout_below="@id/tvForgotPassword"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/round_arrow_right_svg"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+        <LinearLayout
+            android:id="@+id/llSignInOption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnSubmit"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:baselineAligned="false"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/btnLoginWithFacebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnSubmit"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_weight="1"
+                android:background="@drawable/custom_edt_user"
+                android:backgroundTint="@color/skyBlue"
+                android:gravity="center"
+                android:orientation="horizontal"
+                tools:ignore="ObsoleteLayoutParam">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_2"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:minHeight="@dimen/dp_48"
+                    android:text="@string/facebook"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_20"
+                    android:textStyle="bold"
+                    tools:ignore="LabelFor,VisualLintTextFieldSize" />
+
+                <ImageView
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_40"
+                    android:clickable="true"
+                    android:contentDescription="TODO"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:src="@drawable/facebook_svg"
+                    app:tint="@color/white"
+                    tools:ignore="ContentDescription,HardcodedText,DuplicateSpeakableTextCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnLoginWithGoogle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnSubmit"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_weight="1"
+                android:background="@drawable/custom_edt_user"
+                android:backgroundTint="@color/lightRedThree"
+                android:gravity="center"
+                android:orientation="horizontal"
+                tools:ignore="ObsoleteLayoutParam">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_2"
+                    android:gravity="center"
+                    android:minHeight="@dimen/dp_48"
+                    android:text="@string/google"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_20"
+                    android:textStyle="bold"
+                    tools:ignore="LabelFor,VisualLintTextFieldSize" />
+
+                <ImageView
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:contentDescription="TODO"
+                    android:gravity="center"
+                    android:src="@drawable/google_svg"
+                    tools:ignore="ContentDescription,HardcodedText,ImageContrastCheck" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

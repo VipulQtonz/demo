@@ -45,9 +45,13 @@ dependencies {
     implementation(libs.androidx.appcompat.v161)
     implementation(libs.androidx.core.ktx.v1120)
     implementation(libs.androidx.constraintlayout)
+
+
     implementation(libs.firebase.auth)
+    implementation(libs.play.services.auth)
     implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-database:20.2.3")
 
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.room.compiler)

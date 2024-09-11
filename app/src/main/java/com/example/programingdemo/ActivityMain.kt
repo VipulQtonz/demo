@@ -17,15 +17,17 @@ import com.example.programingdemo.activities.ActivityDeviceImage
 import com.example.programingdemo.activities.ActivityFindSongs
 import com.example.programingdemo.activities.ActivityGestures
 import com.example.programingdemo.activities.ActivityImageSlider
+import com.example.programingdemo.activities.ActivityLogin
+import com.example.programingdemo.activities.ActivityMobileNumberVarification
 import com.example.programingdemo.activities.ActivityNavGraph
 import com.example.programingdemo.activities.ActivityNavigationDrawer
 import com.example.programingdemo.activities.ActivityNestedRecyclerView
+import com.example.programingdemo.realTimeDatabase.ActivityRealTimeDatabase
 import com.example.programingdemo.activities.ActivityReceiverDemo
 import com.example.programingdemo.activities.ActivityRecyclerView
 import com.example.programingdemo.activities.ActivityServiceDemo
 import com.example.programingdemo.activities.ActivityViewPager
 import com.example.programingdemo.activities.ActivityWhatsapp
-import com.example.programingdemo.activities.LoginActivity
 import com.example.programingdemo.appFlowDemo.ActivitySplashScreen
 import com.example.programingdemo.databinding.ActivityMainBinding
 import com.example.programingdemo.intent.ActivityExplicitIntentDemoOne
@@ -39,6 +41,7 @@ import com.example.programingdemo.userDetails.ActivityEditUserDetails
 import com.google.android.material.snackbar.Snackbar
 
 class ActivityMain : AppCompatActivity(), View.OnClickListener {
+
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +55,6 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
 //        startForeGroundService()
         addOnClickListener()
     }
@@ -93,6 +95,8 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
         binding.btnRoomDatabase.setOnClickListener(this)
         binding.btnNestedRecyclerView.setOnClickListener(this)
         binding.btnRegisterWithEmailAndPassWord.setOnClickListener(this)
+        binding.btnMobileNumberVarification.setOnClickListener(this)
+        binding.btnRealTimeDatabase.setOnClickListener(this)
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -189,12 +193,26 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
             R.id.btnRoomDatabase -> {
                 startActivity(Intent(this@ActivityMain, ActivityRoomDatabase::class.java))
             }
+
             R.id.btnNestedRecyclerView -> {
                 startActivity(Intent(this@ActivityMain, ActivityNestedRecyclerView::class.java))
             }
 
             R.id.btnRegisterWithEmailAndPassWord -> {
-                startActivity(Intent(this@ActivityMain, LoginActivity::class.java))
+                startActivity(Intent(this@ActivityMain, ActivityLogin::class.java))
+            }
+
+            R.id.btnMobileNumberVarification -> {
+                startActivity(
+                    Intent(
+                        this@ActivityMain,
+                        ActivityMobileNumberVarification::class.java
+                    )
+                )
+            }
+
+            R.id.btnRealTimeDatabase -> {
+                startActivity(Intent(this@ActivityMain, ActivityRealTimeDatabase::class.java))
             }
 
             R.id.btnStaticDemo -> {

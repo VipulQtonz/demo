@@ -198,5 +198,19 @@
             android:text="@string/register_in_firebase"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/btnMobileNumberVarification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mobile_number_varification"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnRealTimeDatabase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RealTimeDatabase"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 </ScrollView>
