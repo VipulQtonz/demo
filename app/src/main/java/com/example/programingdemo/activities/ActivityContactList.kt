@@ -24,7 +24,7 @@ class ActivityContactList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_contact_list)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activityContactListMain)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.llActivityContactListMain)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -38,8 +38,7 @@ class ActivityContactList : AppCompatActivity() {
                 arrayOf(Manifest.permission.READ_CONTACTS),
                 REQUEST_CODE_READ_CONTACTS
             )
-        } else
-        {
+        } else {
             loadContacts()
         }
     }

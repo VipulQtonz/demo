@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/dp_16">
 
     <ImageView
         android:id="@+id/imgPreview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="@string/capturedimage"
-        android:scaleType="fitCenter" />
+        android:scaleType="center" />
 </LinearLayout>

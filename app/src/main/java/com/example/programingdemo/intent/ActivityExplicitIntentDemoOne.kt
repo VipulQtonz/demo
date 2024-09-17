@@ -10,8 +10,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.programingdemo.R
 import com.example.programingdemo.databinding.ActivityExplicitIntentDemoOneBinding
 import com.example.programingdemo.utlis.Const.ADDRESS
-import com.example.programingdemo.utlis.Const.FIRSTNAME
 import com.example.programingdemo.utlis.Const.EMAIL
+import com.example.programingdemo.utlis.Const.FIRSTNAME
 import com.example.programingdemo.utlis.Const.LASTNAME
 import com.example.programingdemo.utlis.Const.MOBILE_NUMBER
 
@@ -22,7 +22,7 @@ class ActivityExplicitIntentDemoOne : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityExplicitIntentDemoOneBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.llExplicitIntentDemoOneMain)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activityExplicitIntentDemoOneMain)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(
                 systemBars.left + v.paddingLeft,

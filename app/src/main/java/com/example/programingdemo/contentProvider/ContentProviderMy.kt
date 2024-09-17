@@ -8,12 +8,12 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteOpenHelper
 import android.net.Uri
 import com.example.programingdemo.R
+import com.example.programingdemo.utlis.Const.AUTHORITY
+import com.example.programingdemo.utlis.Const.COLUMN_ID
 import com.example.programingdemo.utlis.Const.MY_TABLE
 import com.example.programingdemo.utlis.Const.MY_TABLE_ID
 import com.example.programingdemo.utlis.Const.TABLE_NAME
 import com.example.programingdemo.utlis.Const.TABLE_NAME_HASH
-import com.example.programingdemo.utlis.GeneralUsage
-import com.example.programingdemo.utlis.GeneralUsage.MyContract.AUTHORITY
 import com.example.programingdemo.utlis.MyDatabaseHelper
 
 class ContentProviderMy : ContentProvider() {
@@ -40,7 +40,7 @@ class ContentProviderMy : ContentProvider() {
         val match = uriMatcher.match(uri)
         return when (match) {
             MY_TABLE -> db.query(
-                GeneralUsage.MyContract.MyTable.TABLE_NAME,
+                TABLE_NAME,
                 projection,
                 selection,
                 selectionArgs,
@@ -52,10 +52,10 @@ class ContentProviderMy : ContentProvider() {
 
             MY_TABLE_ID -> {
                 val id = uri.lastPathSegment
-                val newSelection = "${GeneralUsage.MyContract.MyTable._ID} = ?"
+                val newSelection = "$COLUMN_ID = ?"
                 val newSelectionArgs = arrayOf(id)
                 db.query(
-                    GeneralUsage.MyContract.MyTable.TABLE_NAME,
+                    TABLE_NAME,
                     projection,
                     newSelection,
                     newSelectionArgs,
@@ -71,7 +71,7 @@ class ContentProviderMy : ContentProvider() {
 
     override fun insert(uri: Uri, values: ContentValues?): Uri {
         val db = dbHelper.writableDatabase
-        val id = db.insert(GeneralUsage.MyContract.MyTable.TABLE_NAME, null, values)
+        val id = db.insert(TABLE_NAME, null, values)
         context?.contentResolver?.notifyChange(uri, null)
         return ContentUris.withAppendedId(uri, id)
     }
@@ -82,7 +82,7 @@ class ContentProviderMy : ContentProvider() {
         val db = dbHelper.writableDatabase
         val count = if (values != null) {
             db.update(
-                GeneralUsage.MyContract.MyTable.TABLE_NAME, values, selection, selectionArgs
+                TABLE_NAME, values, selection, selectionArgs
             )
         } else {
             0
@@ -95,7 +95,7 @@ class ContentProviderMy : ContentProvider() {
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
         val db = dbHelper.writableDatabase
-        val count = db.delete(GeneralUsage.MyContract.MyTable.TABLE_NAME, selection, selectionArgs)
+        val count = db.delete(TABLE_NAME, selection, selectionArgs)
         context?.contentResolver?.notifyChange(uri, null)
         return count
     }

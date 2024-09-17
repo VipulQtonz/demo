@@ -4,12 +4,12 @@
     android:layout_height="wrap_content"
     android:background="@color/parrot"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/dp_16">
 
     <ImageView
         android:id="@+id/imgProfileImage"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
         android:contentDescription="@string/profile_image"
         android:src="@drawable/user_profile" />
 
@@ -17,17 +17,17 @@
         android:id="@+id/tvProfileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/dp_8"
         android:text="@string/vipul_jadav"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="@dimen/sp_18"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvProfileEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/dp_4"
         android:text="@string/vipuljadav542_gmail_com"
         android:textColor="@android:color/white" />
 </LinearLayout>

@@ -23,7 +23,7 @@ class ActivityIntroScreen : AppCompatActivity(), View.OnClickListener {
         enableEdgeToEdge()
         binding = ActivityIntroScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.llIntroScreenMain)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.llActivityIntroScreenMain)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

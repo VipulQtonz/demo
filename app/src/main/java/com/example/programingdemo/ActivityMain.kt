@@ -13,8 +13,8 @@ import com.example.programingdemo.activities.ActivityAsyncTaskDemo
 import com.example.programingdemo.activities.ActivityBottomNavigationBar
 import com.example.programingdemo.activities.ActivityContactList
 import com.example.programingdemo.activities.ActivityContentProvider
-import com.example.programingdemo.activities.ActivityDeviceImage
 import com.example.programingdemo.activities.ActivityFindSongs
+import com.example.programingdemo.activities.ActivityFirebaseFirestore
 import com.example.programingdemo.activities.ActivityGestures
 import com.example.programingdemo.activities.ActivityImageSlider
 import com.example.programingdemo.activities.ActivityLogin
@@ -22,7 +22,6 @@ import com.example.programingdemo.activities.ActivityMobileNumberVarification
 import com.example.programingdemo.activities.ActivityNavGraph
 import com.example.programingdemo.activities.ActivityNavigationDrawer
 import com.example.programingdemo.activities.ActivityNestedRecyclerView
-import com.example.programingdemo.realTimeDatabase.ActivityRealTimeDatabase
 import com.example.programingdemo.activities.ActivityReceiverDemo
 import com.example.programingdemo.activities.ActivityRecyclerView
 import com.example.programingdemo.activities.ActivityServiceDemo
@@ -30,10 +29,12 @@ import com.example.programingdemo.activities.ActivityViewPager
 import com.example.programingdemo.activities.ActivityWhatsapp
 import com.example.programingdemo.appFlowDemo.ActivitySplashScreen
 import com.example.programingdemo.databinding.ActivityMainBinding
+import com.example.programingdemo.gallery.ActivityDeviceImage
 import com.example.programingdemo.intent.ActivityExplicitIntentDemoOne
 import com.example.programingdemo.intent.ActivityImplicitIntentDemoOne
 import com.example.programingdemo.intent.ActivityImplicitIntentDemoTwo
 import com.example.programingdemo.intent.ActivityNotificationDemo
+import com.example.programingdemo.realTimeDatabase.ActivityRealTimeDatabase
 import com.example.programingdemo.room.ActivityRoomDatabase
 import com.example.programingdemo.services.ServiceReceivedIntent
 import com.example.programingdemo.sharedPrefrences.ActivitySharedPrefrences
@@ -55,6 +56,7 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
 //        startForeGroundService()
         addOnClickListener()
     }
@@ -97,6 +99,7 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
         binding.btnRegisterWithEmailAndPassWord.setOnClickListener(this)
         binding.btnMobileNumberVarification.setOnClickListener(this)
         binding.btnRealTimeDatabase.setOnClickListener(this)
+        binding.btnFirebaseFirestore.setOnClickListener(this)
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -213,6 +216,9 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
 
             R.id.btnRealTimeDatabase -> {
                 startActivity(Intent(this@ActivityMain, ActivityRealTimeDatabase::class.java))
+            }
+            R.id.btnFirebaseFirestore -> {
+                startActivity(Intent(this@ActivityMain, ActivityFirebaseFirestore::class.java))
             }
 
             R.id.btnStaticDemo -> {

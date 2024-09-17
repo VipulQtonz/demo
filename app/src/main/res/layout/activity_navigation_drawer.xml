@@ -7,7 +7,7 @@
     tools:context=".activities.ActivityNavigationDrawer">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/tbMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -50,26 +50,26 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
+        android:id="@+id/dlMain"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_below="@id/toolbar"
+        android:layout_below="@id/tbMain"
         android:background="@color/lightWhite"
         android:fitsSystemWindows="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/tbMain">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/content_frame"
+            android:id="@+id/fcwMain"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:navGraph="@navigation/nav_graph_bottom_navigation" />
 
         <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
+            android:id="@+id/nvMain"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"

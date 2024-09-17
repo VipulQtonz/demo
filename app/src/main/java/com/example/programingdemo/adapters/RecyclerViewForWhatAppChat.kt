@@ -59,10 +59,6 @@ class RecyclerViewForWhatAppChat(
         fun onChatItemClick(chatItem: ChatItem)
     }
 
-//    fun updateList(newList: List<ChatItem>) {
-//        items = newList
-//    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
             SingleItemForChatBinding.inflate(LayoutInflater.from(parent.context), parent, false)

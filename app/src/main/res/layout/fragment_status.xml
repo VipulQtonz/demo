@@ -33,7 +33,7 @@
                 android:contentDescription="@string/link"
                 android:src="@drawable/user_profile"
                 app:civ_border_color="@color/green"
-                app:civ_border_width="2dp" />
+                app:civ_border_width="@dimen/dp_2" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="@dimen/dp_18"
@@ -43,7 +43,7 @@
                 android:contentDescription="@string/link"
                 android:src="@drawable/plus_svg"
                 app:civ_border_color="@color/green"
-                app:civ_border_width="2dp"
+                app:civ_border_width="@dimen/dp_2"
                 app:civ_circle_background_color="@color/green" />
         </FrameLayout>
 

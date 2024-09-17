@@ -4,16 +4,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.Target
 import com.example.programingdemo.R
-import java.io.File
 
-class ImageAdapter(private val imageList: List<String>) :
-    RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
+class ImageAdapter(
+    private val onImageClickListener: OnImageClickListener
+) : ListAdapter<String, ImageAdapter.ImageViewHolder>(DiffCallback()) {
 
-    class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imgRecyclerView)
+    interface OnImageClickListener {
+        fun onImageClick(imagePath: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
@@ -22,10 +26,28 @@ class ImageAdapter(private val imageList: List<String>) :
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        Glide.with(holder.itemView.context)
-            .load(File(imageList[position]))
+        val imagePath = getItem(position)
+        Glide.with(holder.itemView.context).load(imagePath).override(Target.SIZE_ORIGINAL)
             .into(holder.imageView)
+
+        holder.path.text = imagePath.toString()
+        holder.itemView.setOnClickListener {
+            onImageClickListener.onImageClick(imagePath)
+        }
     }
 
-    override fun getItemCount() = imageList.size
+    class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imageView: ImageView = itemView.findViewById(R.id.imgRecyclerView)
+        val path: TextView = itemView.findViewById(R.id.tvImagePath)
+    }
+
+    class DiffCallback : DiffUtil.ItemCallback<String>() {
+        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+            return oldItem == newItem
+        }
+    }
 }

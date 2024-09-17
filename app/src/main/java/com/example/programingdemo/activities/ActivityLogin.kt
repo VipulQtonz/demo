@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.programingdemo.MyApp.Companion.firebaseAuth
 import com.example.programingdemo.R
 import com.example.programingdemo.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -20,12 +21,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 class ActivityLogin : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var auth: FirebaseAuth
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var signUpButton: ImageView
@@ -56,7 +55,6 @@ class ActivityLogin : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun init() {
-        auth = FirebaseAuth.getInstance()
         emailEditText = binding.edtEmail
         passwordEditText = binding.edtPassword
         signUpButton = binding.btnSubmit
@@ -94,7 +92,7 @@ class ActivityLogin : AppCompatActivity(), View.OnClickListener {
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-        auth.signInWithCredential(credential)
+        firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT)
@@ -125,7 +123,7 @@ class ActivityLogin : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun signUpWithEmailPassword(email: String, password: String) {
-        auth.createUserWithEmailAndPassword(email, password)
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     clearEditTextFields()

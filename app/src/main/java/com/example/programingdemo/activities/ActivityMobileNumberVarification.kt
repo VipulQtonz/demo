@@ -9,19 +9,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.programingdemo.MyApp.Companion.firebaseAuth
 import com.example.programingdemo.R
 import com.example.programingdemo.databinding.ActivityMobileNumberVarificationBinding
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import java.util.concurrent.TimeUnit
 
 class ActivityMobileNumberVarification : AppCompatActivity(), View.OnClickListener {
-
     private lateinit var binding: ActivityMobileNumberVarificationBinding
-    private lateinit var auth: FirebaseAuth
     private lateinit var etPhoneNumber: EditText
     private lateinit var etOtp: EditText
     private lateinit var btnSendOtp: Button
@@ -33,7 +31,7 @@ class ActivityMobileNumberVarification : AppCompatActivity(), View.OnClickListen
         enableEdgeToEdge()
         binding = ActivityMobileNumberVarificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.ActivityMobileNumberVarificationMain)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.llActivityMobileNumberVarificationMain)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -49,15 +47,14 @@ class ActivityMobileNumberVarification : AppCompatActivity(), View.OnClickListen
     }
 
     private fun init() {
-        auth = FirebaseAuth.getInstance()
-        etPhoneNumber = binding.etPhoneNumber
-        etOtp = binding.etOtp
+        etPhoneNumber = binding.edtPhoneNumber
+        etOtp = binding.edtOtp
         btnSendOtp = binding.btnSendOtp
         btnVerifyOtp = binding.btnVerifyOtp
     }
 
     private fun sendVerificationCode(phoneNumber: String) {
-        val options = PhoneAuthOptions.newBuilder(auth)
+        val options = PhoneAuthOptions.newBuilder(firebaseAuth)
             .setPhoneNumber(phoneNumber)
             .setTimeout(60L, TimeUnit.SECONDS)
             .setActivity(this)
@@ -95,7 +92,7 @@ class ActivityMobileNumberVarification : AppCompatActivity(), View.OnClickListen
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-        auth.signInWithCredential(credential)
+        firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(

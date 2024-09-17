@@ -209,7 +209,15 @@
             android:id="@+id/btnRealTimeDatabase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RealTimeDatabase"
+            android:text="@string/realtimedatabase"
+            android:textAllCaps="false" />
+
+
+        <Button
+            android:id="@+id/btnFirebaseFirestore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/firebase_firestore"
             android:textAllCaps="false" />
 
     </LinearLayout>

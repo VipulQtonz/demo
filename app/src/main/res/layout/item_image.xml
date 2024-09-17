@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/imgRecyclerView"
-    android:layout_width="@dimen/dp_200"
+    android:layout_width="wrap_content"
     android:layout_height="@dimen/dp_200"
-    android:layout_margin="@dimen/dp_4"
+    android:layout_gravity="center"
+    android:layout_marginTop="@dimen/dp_4"
+    android:layout_marginStart="@dimen/dp_4"
     android:contentDescription="@string/image"
-    android:scaleType="centerCrop" />
+    android:scaleType="center"
+    android:src="@drawable/user_profile" />

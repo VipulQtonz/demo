@@ -1,6 +1,5 @@
 package com.example.programingdemo.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -15,12 +14,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
 import com.example.programingdemo.R
-import com.example.programingdemo.adapters.RecyclerViewForWhatAppChat
 import com.example.programingdemo.adapters.ViewPagerAdapterForWhatsapp
-import com.example.programingdemo.data.ChatItem
 import com.example.programingdemo.databinding.ActivityWhatsappBinding
-import com.example.programingdemo.fragments.whatsapp.activity.ActivityWhatsAppChatDetails
-import com.example.programingdemo.utlis.GeneralUsage.DataProvider.getChatItems
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -29,8 +24,6 @@ class ActivityWhatsapp : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
     private lateinit var menuIcon: ImageView
     private lateinit var binding: ActivityWhatsappBinding
-    private lateinit var chatAdapter: RecyclerViewForWhatAppChat
-    private lateinit var chatItems: List<ChatItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,41 +38,9 @@ class ActivityWhatsapp : AppCompatActivity() {
         }
 
         init()
-//        chatItems = getChatItems()
-//        chatAdapter = RecyclerViewForWhatAppChat(chatItems,this@ActivityWhatsapp)
-
     }
 
     private fun init() {
-        val imgSearch = binding.imgSearch
-        val searchView = binding.searchView
-
-//        imgSearch.setOnClickListener {
-//            if (searchView.isVisible) {
-//                searchView.visibility = View.GONE
-//            } else {
-//                searchView.visibility = View.VISIBLE
-//                searchView.requestFocus()
-//            }
-//        }
-//        searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
-//            if (!hasFocus) {
-//                searchView.visibility = View.GONE
-//            }
-//        }
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                filterChatItems(query)
-//                return true
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                filterChatItems(newText)
-//                return true
-//            }
-//        })
-
-
         tabLayout = binding.tlMain
         viewPager = binding.vpMain
         menuIcon = binding.imgMenu
@@ -108,19 +69,6 @@ class ActivityWhatsapp : AppCompatActivity() {
         })
         updateFabIcon(viewPager.currentItem)
     }
-
-//    private fun filterChatItems(query: String?) {
-//        if (query.isNullOrBlank()) {
-//            chatAdapter.updateList(chatItems)
-//        } else {
-//            val filteredList = chatItems.filter {
-//                it.displayName.contains(query, ignoreCase = true) ||
-//                        it.message.contains(query, ignoreCase = true)
-//            }
-//            chatAdapter.updateList(filteredList)
-//        }
-//    }
-
     private fun showPopupMenu(it: View?) {
         val popupMenu = PopupMenu(this, it)
         val inflater: MenuInflater = popupMenu.menuInflater

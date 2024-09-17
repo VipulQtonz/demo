@@ -11,11 +11,25 @@ import com.example.programingdemo.utlis.Const.GENERAL_NOTIFICATION_CHANNEL_DESCR
 import com.example.programingdemo.utlis.Const.GENERAL_NOTIFICATION_CHANNEL_ID
 import com.example.programingdemo.utlis.Const.GENERAL_NOTIFICATION_CHANNEL_NAME
 import com.example.programingdemo.utlis.GeneralUsage.Companion.checkVersion
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 
 class MyApp : Application() {
+
+    companion object {
+        lateinit var firebaseAuth: FirebaseAuth
+        lateinit var firebaseDatabase: FirebaseDatabase
+        lateinit var firestore: FirebaseFirestore
+        lateinit var firebaseStorage: FirebaseStorage
+    }
+
     override fun onCreate() {
         super.onCreate()
 
+        initFirebase()
         createNotificationChannel(
             GENERAL_NOTIFICATION_CHANNEL_ID,
             GENERAL_NOTIFICATION_CHANNEL_NAME,
@@ -26,6 +40,15 @@ class MyApp : Application() {
             FOREGROUND_SERVICE_CHANNEL_NAME,
             FOREGROUND_SERVICE_CHANNEL_DESCRIPTION
         )
+    }
+
+    private fun initFirebase() {
+        FirebaseApp.initializeApp(this)
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseDatabase = FirebaseDatabase.getInstance()
+        firestore = FirebaseFirestore.getInstance()
+        firebaseStorage = FirebaseStorage.getInstance()
     }
 
     private fun createNotificationChannel(

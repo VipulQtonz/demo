@@ -1,13 +1,13 @@
 package com.example.programingdemo.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.programingdemo.activities.ActivityNavGraph
 import com.example.programingdemo.R
+import com.example.programingdemo.activities.ActivityNavGraph
 import com.example.programingdemo.databinding.FragmentYellowBinding
 
 class FragmentYellow : Fragment(), View.OnClickListener {
@@ -43,7 +43,6 @@ class FragmentYellow : Fragment(), View.OnClickListener {
         when (p0?.id) {
             R.id.btnGotoGreen -> {
                 (requireActivity() as ActivityNavGraph).navigateToFragmentGreen()
-//                findNavController().navigate(R.id.action_fragmentYellow_to_fragmentGreen2)
             }
 
             R.id.btnGotoRed -> {

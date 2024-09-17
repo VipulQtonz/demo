@@ -28,7 +28,6 @@ class CategoryAdapterForParent(private val categoryList: List<Category>) :
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = categoryList[position]
         holder.categoryName.text = category.categoryName
-
         holder.itemsRecyclerView.layoutManager =
             LinearLayoutManager(holder.itemsRecyclerView.context, RecyclerView.HORIZONTAL, false)
         holder.itemsRecyclerView.adapter = ItemAdapterForChild(category.items)
@@ -40,7 +39,6 @@ class CategoryAdapterForParent(private val categoryList: List<Category>) :
             holder.itemsRecyclerView.visibility = View.GONE
             holder.hideShow.setImageResource(R.drawable.arrow_drop_down)
         }
-
         holder.hideShow.setOnClickListener {
             category.isExpanded = !category.isExpanded
 

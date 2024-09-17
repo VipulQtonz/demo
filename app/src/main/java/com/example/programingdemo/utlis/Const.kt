@@ -1,6 +1,7 @@
 package com.example.programingdemo.utlis
 
 import android.Manifest
+import android.net.Uri
 
 object Const {
     const val GENERAL_NOTIFICATION_CHANNEL_ID = "CHA1"
@@ -32,7 +33,6 @@ object Const {
     // uri
     const val QTONZ_URI = "https://qtonz.com/"
 
-
     // for gender
     const val MALE = "Male"
     const val FEMALE = "Female"
@@ -48,6 +48,8 @@ object Const {
     // for notification action
     const val NOTIFICATION_ACTION_STOP = "stop"
     const val NOTIFICATION_ACTION_NEXT = "next"
+
+    const val INTENT_CHANNEL_ID = 12
 
 
     //intent data
@@ -81,40 +83,64 @@ object Const {
     const val MY_TABLE = 1
     const val MY_TABLE_ID = 2
 
-    const val UPDATE="Update"
-    const val SAVE="Save"
+    const val UPDATE = "Update"
+    const val SAVE = "Save"
 
     //fragment lifecycle
 
-    const val FRAGMENT_GREEN="FragmentGreen"
+    const val FRAGMENT_GREEN = "FragmentGreen"
 
-    const val CAMERAX_APP="CameraXApp"
-    const val MESSAGE_COUNT_PLUS="99+"
+    const val CAMERAX_APP = "CameraXApp"
+    const val MESSAGE_COUNT_PLUS = "99+"
 
 
     //for camera
     const val REQUEST_CODE_PERMISSIONS = 10
-    val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    val REQUIRED_PERMISSIONS =
+        arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
     //whats app  chat data
-    const val CHAT_ITEM="chatItem"
+    const val CHAT_ITEM = "chatItem"
 
     //for permission
     const val REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 100
     const val REQUEST_CODE_READ_EXTERNAL_STORAGE = 101
 
-    const val MYA_PP_IMAGES="MyAppImages"
-    const val DATA="data"
+    const val MYA_PP_IMAGES = "MyAppImages"
+    const val DATA = "data"
 
 
-    const val EXAMPLE_IMAGE_NAME="example_image.jpg"
-
+    const val EXAMPLE_IMAGE_NAME = "example_image.jpg"
 
     const val REQUEST_CODE_READ_CONTACTS = 100
     const val REQUEST_CODE_WRITE_CONTACTS = 2
 
-    const val CONTACT_NAME="CONTACT_NAME"
-    const val CONTACT_ID="CONTACT_ID"
+    const val CONTACT_NAME = "CONTACT_NAME"
+    const val CONTACT_ID = "CONTACT_ID"
 
-    const val USER_DATABASE="user_database"
+    const val USER_DATABASE = "user_database"
+
+    //for realtime database
+    const val USER_DATA = "UserData"
+    const val DATE_OF_BIRTH = "dateOfBirth"
+    const val EMAIL_NEW = "email"
+    const val ADDRESS_NEW = "address"
+    const val NAME = "name"
+
+
+    const val RECENT = "Recent"
+    const val IMAGE_PATH = "imagePath"
+    const val FOLDER_PATH = "folder_path"
+
+
+    //room tables
+    const val RECENT_PHOTOS = "recentPhotos"
+    const val USERS = "users"
+
+
+    const val AUTHORITY = "com.example.programingdemo.ContentProviderMy"
+    val CONTENT_URI: Uri = Uri.parse("content://$AUTHORITY/mytable")
+
+
+
 }

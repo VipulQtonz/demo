@@ -3,7 +3,6 @@ package com.example.programingdemo.utlis
 import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.content.Context
-import android.net.Uri
 import android.os.Build
 import android.widget.Toast
 import com.example.programingdemo.R
@@ -28,17 +27,6 @@ class GeneralUsage(private val context: Context) {
         @SuppressLint("ObsoleteSdkInt")
         fun checkVersion(): Boolean {
             return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
-        }
-    }
-
-    object MyContract {
-        const val AUTHORITY = "com.example.programingdemo.ContentProviderMy"
-        val CONTENT_URI: Uri = Uri.parse("content://$AUTHORITY/mytable")
-
-        object MyTable {
-            const val TABLE_NAME = "mytable"
-            const val _ID = "_id"
-            const val COLUMN_NAME = "name"
         }
     }
 
@@ -347,6 +335,8 @@ class GeneralUsage(private val context: Context) {
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
         }
     }
+
+
 }
 
 

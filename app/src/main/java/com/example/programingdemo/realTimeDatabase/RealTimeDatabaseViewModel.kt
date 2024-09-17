@@ -5,6 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.programingdemo.utlis.Const.USER_DATA
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.launch
 
 class RealTimeDatabaseViewModel : ViewModel() {
@@ -30,24 +33,26 @@ class RealTimeDatabaseViewModel : ViewModel() {
         }
     }
 
-    fun updateUserProfile(id: String, newName: String) {
+    fun updateUserProfile(userProfileInfo: UserProfileInfo) {
         viewModelScope.launch {
-            val success = repository.updateUserProfile(id, newName)
+            val success = repository.updateUserProfile(userProfileInfo)
             if (success) fetchData()
         }
     }
 
-    fun addUserProfile(name: String) {
+    fun addUserProfile(userProfileInfo: UserProfileInfo) {
+        val realTimeDatabase: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child(USER_DATA)
+
         viewModelScope.launch {
-            val newNote = UserProfileInfo(
-                id = "",
-                name = Name(name, "jadav"),
-                email = "vipuljadav542@gmail.com",
-                address = Address("Rajkot", "Gujarat", 360023),
-                dateOfBirth = "15-01-2003"
-            )
-            val success = repository.addUserProfile(newNote)
-            if (success) fetchData()
+            val newProfileRef = realTimeDatabase.push()
+            val newKey = newProfileRef.key
+
+            if (newKey != null) {
+                val success = repository.addUserProfile(userProfileInfo)
+                if (success) fetchData()
+            }
         }
     }
+
 }

@@ -60,12 +60,12 @@ class ActivityNavigationDrawer : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun init() {
-        drawerLayout = binding.drawerLayout
-        navigationView = binding.navView
-        toolbar = binding.toolbar
+        drawerLayout = binding.dlMain
+        navigationView = binding.nvMain
+        toolbar = binding.tbMain
 
         val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.content_frame) as? NavHostFragment
+            supportFragmentManager.findFragmentById(R.id.fcwMain) as? NavHostFragment
         navController = navHostFragment!!.navController
 
         navigationView.setNavigationItemSelectedListener { menuItem ->

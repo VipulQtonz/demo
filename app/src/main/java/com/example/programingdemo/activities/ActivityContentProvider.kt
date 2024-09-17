@@ -12,9 +12,11 @@ import com.example.programingdemo.R
 import com.example.programingdemo.adapters.MyDataRecyclerView
 import com.example.programingdemo.data.MyData
 import com.example.programingdemo.databinding.ActivityContentProviderBinding
+import com.example.programingdemo.utlis.Const.COLUMN_ID
+import com.example.programingdemo.utlis.Const.COLUMN_NAME
+import com.example.programingdemo.utlis.Const.CONTENT_URI
 import com.example.programingdemo.utlis.Const.SAVE
 import com.example.programingdemo.utlis.Const.UPDATE
-import com.example.programingdemo.utlis.GeneralUsage
 
 class ActivityContentProvider : AppCompatActivity(), MyDataRecyclerView.OnItemClickListener {
 
@@ -56,11 +58,11 @@ class ActivityContentProvider : AppCompatActivity(), MyDataRecyclerView.OnItemCl
 
     private fun deleteValue(id: String) {
 
-        val selection = "${GeneralUsage.MyContract.MyTable._ID} = ?"
+        val selection = "$COLUMN_ID = ?"
         val selectionArgs = arrayOf(id)
 
         contentResolver.delete(
-            GeneralUsage.MyContract.CONTENT_URI, selection, selectionArgs
+            CONTENT_URI, selection, selectionArgs
         )
         getValue()
 
@@ -69,14 +71,14 @@ class ActivityContentProvider : AppCompatActivity(), MyDataRecyclerView.OnItemCl
     private fun updateValue(id: String, name: String) {
         val values = ContentValues().apply {
             put(
-                GeneralUsage.MyContract.MyTable.COLUMN_NAME, name
+                COLUMN_NAME, name
             )
         }
-        val selection = "${GeneralUsage.MyContract.MyTable._ID} = ?"
+        val selection = "$COLUMN_ID = ?"
         val selectionArgs = arrayOf(id)
 
         contentResolver.update(
-            GeneralUsage.MyContract.CONTENT_URI, values, selection, selectionArgs
+            CONTENT_URI, values, selection, selectionArgs
         )
         resetUpdateState()
         getValue()
@@ -88,21 +90,21 @@ class ActivityContentProvider : AppCompatActivity(), MyDataRecyclerView.OnItemCl
         updateId = null
         val dataList = mutableListOf<MyData>()
         val cursor = contentResolver.query(
-            GeneralUsage.MyContract.CONTENT_URI,
+            CONTENT_URI,
             arrayOf(
-                GeneralUsage.MyContract.MyTable._ID,
-                GeneralUsage.MyContract.MyTable.COLUMN_NAME
+                COLUMN_ID,
+                COLUMN_NAME
             ),
             null,
             null,
-            "${GeneralUsage.MyContract.MyTable._ID} DESC"
+            "$COLUMN_ID DESC"
         )
         cursor?.use {
             while (it.moveToNext()) {
-                val id = it.getLong(it.getColumnIndexOrThrow(GeneralUsage.MyContract.MyTable._ID))
+                val id = it.getLong(it.getColumnIndexOrThrow(COLUMN_ID))
 
                 val name =
-                    it.getString(it.getColumnIndexOrThrow(GeneralUsage.MyContract.MyTable.COLUMN_NAME))
+                    it.getString(it.getColumnIndexOrThrow(COLUMN_NAME))
                 dataList.add(MyData(id, name))
             }
         }
@@ -119,10 +121,10 @@ class ActivityContentProvider : AppCompatActivity(), MyDataRecyclerView.OnItemCl
 
     private fun addValue(name: String) {
         val values = ContentValues().apply {
-            put(GeneralUsage.MyContract.MyTable.COLUMN_NAME, name)
+            put(COLUMN_NAME, name)
         }
 
-        val uri = contentResolver.insert(GeneralUsage.MyContract.CONTENT_URI, values)
+        val uri = contentResolver.insert(CONTENT_URI, values)
         uri?.let {
             getValue()
         }

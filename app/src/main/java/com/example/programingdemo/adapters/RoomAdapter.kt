@@ -44,11 +44,6 @@ class RoomAdapter(private val listener: OnChatItemClickListener) :
         fun onDeleteClick(user: User)
     }
 
-    fun submitList(it: List<User>) {
-        dataList = it
-        notifyDataSetChanged()
-    }
-
     fun getAllData(user: List<User>) {
         dataList = user
         notifyDataSetChanged()

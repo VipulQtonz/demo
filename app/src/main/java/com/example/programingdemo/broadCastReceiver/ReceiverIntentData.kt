@@ -6,8 +6,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import com.example.programingdemo.activities.ActivityReceiveFromOtherApplication
 import com.example.programingdemo.R
+import com.example.programingdemo.activities.ActivityReceiveFromOtherApplication
 import com.example.programingdemo.utlis.Const.MESSAGE
 import com.example.programingdemo.utlis.Const.SENDER_NAME
 
@@ -50,7 +50,7 @@ class ReceiverIntentData : BroadcastReceiver() {
         notificationId: Int
     ) {
         val notification =
-            NotificationCompat.Builder(context!!, "12")
+            NotificationCompat.Builder(context!!, context.getString(R.string._1_))
                 .setContentTitle(senderName)
                 .setContentText(message)
                 .setSmallIcon(R.drawable.ic_launcher_background)

@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -14,7 +13,9 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <uses-feature
         android:name="android.hardware.camera.flash"
@@ -44,6 +45,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProgramingDemo"
         tools:targetApi="31">
+
+        <activity
+            android:name=".gallery.ImageDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".realTimeDatabase.ActivityFirestoreDatabase"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ActivityFirebaseFirestore"
+            android:exported="true" />
         <activity
             android:name=".realTimeDatabase.ActivityRealTimeDatabase"
             android:exported="false" />
@@ -69,7 +80,7 @@
             android:name=".activities.ActivityContactList"
             android:exported="false" />
         <activity
-            android:name=".activities.ActivityDeviceImage"
+            android:name=".gallery.ActivityDeviceImage"
             android:exported="false" />
         <activity
             android:name=".activities.ActivityGestures"

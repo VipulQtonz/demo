@@ -1,12 +1,16 @@
 package com.example.programingdemo.realTimeDatabase
 
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.example.programingdemo.MyApp.Companion.firebaseDatabase
+import com.example.programingdemo.utlis.Const.ADDRESS_NEW
+import com.example.programingdemo.utlis.Const.DATE_OF_BIRTH
+import com.example.programingdemo.utlis.Const.EMAIL_NEW
+import com.example.programingdemo.utlis.Const.NAME
+import com.example.programingdemo.utlis.Const.USER_DATA
 import kotlinx.coroutines.tasks.await
 
 class UserProfileRepository {
-    private val realTimeDatabase: DatabaseReference =
-        FirebaseDatabase.getInstance().reference.child("Notes")
+    private val realTimeDatabase =
+        firebaseDatabase.reference.child(USER_DATA)
 
     suspend fun fetchUserProfiles(): List<UserProfileInfo> {
         return try {
@@ -14,13 +18,12 @@ class UserProfileRepository {
             val dataList = mutableListOf<UserProfileInfo>()
             for (dataSnapshot in snapshot.children) {
                 val id = dataSnapshot.key ?: continue
-                val nameSnapshot = dataSnapshot.child("name").getValue(Name::class.java) ?: Name()
+                val nameSnapshot = dataSnapshot.child(NAME).getValue(Name::class.java) ?: Name()
                 val addressSnapshot =
-                    dataSnapshot.child("address").getValue(Address::class.java) ?: Address()
-                val email = dataSnapshot.child("email").getValue(String::class.java) ?: ""
+                    dataSnapshot.child(ADDRESS_NEW).getValue(Address::class.java) ?: Address()
+                val email = dataSnapshot.child(EMAIL_NEW).getValue(String::class.java) ?: ""
                 val dateOfBirth =
-                    dataSnapshot.child("dateOfBirth").getValue(String::class.java) ?: ""
-
+                    dataSnapshot.child(DATE_OF_BIRTH).getValue(String::class.java) ?: ""
                 if (email.isNotEmpty() && dateOfBirth.isNotEmpty()) {
                     dataList.add(
                         UserProfileInfo(
@@ -48,10 +51,9 @@ class UserProfileRepository {
         }
     }
 
-    suspend fun updateUserProfile(id: String, newName: String): Boolean {
+    suspend fun updateUserProfile(userProfile: UserProfileInfo): Boolean {
         return try {
-            val updates = mapOf("name/firstName" to newName)
-            realTimeDatabase.child(id).updateChildren(updates).await()
+            realTimeDatabase.child(userProfile.id).setValue(userProfile).await()
             true
         } catch (e: Exception) {
             false
@@ -62,6 +64,7 @@ class UserProfileRepository {
         return try {
             val newNoteRef = realTimeDatabase.push()
             newNoteRef.setValue(userProfile).await()
+            newNoteRef.key
             true
         } catch (e: Exception) {
             false
