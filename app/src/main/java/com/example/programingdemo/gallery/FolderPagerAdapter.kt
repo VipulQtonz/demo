@@ -6,7 +6,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class FolderPagerAdapter(
     activity: FragmentActivity,
-    private val folderList: List<Pair<String, String>>
+    private val folderList: List<Pair<String, String>>,
+
 ) : FragmentStateAdapter(activity) {
 
     override fun getItemCount(): Int {
@@ -15,9 +16,11 @@ class FolderPagerAdapter(
 
     override fun createFragment(position: Int): Fragment {
         val folderPath = folderList[position].second
-        return ImageFolderFragment.newInstance(folderPath)
+
+        val fragment = ImageFolderFragment.newInstance(folderPath, position)
+        return fragment
+
     }
 }
-
 
 

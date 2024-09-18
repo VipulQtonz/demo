@@ -142,5 +142,18 @@ object Const {
     val CONTENT_URI: Uri = Uri.parse("content://$AUTHORITY/mytable")
 
 
+    const val IMAGE_LIST = "image_list"
+    const val IMAGE_POSITION = "image_position"
+
+
+    //for write external storage
+    const val REQUEST_CODE_WRITE_STORAGE = 1001
+    const val REQUEST_CODE_MANAGE_STORAGE = 1002
+
+
+    const val POSITION="position"
+
+
+
 
 }

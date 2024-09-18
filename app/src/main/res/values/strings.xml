@@ -304,4 +304,5 @@
     <string name="please_enter_data">please enter data</string>
     <string name="_1_">1</string>
     <string name="permission_required_to_access_images">Permission required to access images</string>
+    <string name="unable_to_delete_the_image">Unable to delete the image</string>
 </resources>

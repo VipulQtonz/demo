@@ -18,7 +18,9 @@ import com.example.programingdemo.R
 import com.example.programingdemo.adapters.ImageAdapter
 import com.example.programingdemo.room.AppDatabase
 import com.example.programingdemo.utlis.Const.FOLDER_PATH
-import com.example.programingdemo.utlis.Const.IMAGE_PATH
+import com.example.programingdemo.utlis.Const.IMAGE_LIST
+import com.example.programingdemo.utlis.Const.IMAGE_POSITION
+import com.example.programingdemo.utlis.Const.POSITION
 import com.example.programingdemo.utlis.Const.RECENT
 import com.example.programingdemo.utlis.Const.REQUEST_CODE_READ_EXTERNAL_STORAGE
 import kotlinx.coroutines.CoroutineScope
@@ -28,7 +30,6 @@ import kotlinx.coroutines.withContext
 import java.util.Locale
 
 class ImageFolderFragment : Fragment(), ImageAdapter.OnImageClickListener {
-
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ImageAdapter
     private lateinit var database: AppDatabase
@@ -38,17 +39,28 @@ class ImageFolderFragment : Fragment(), ImageAdapter.OnImageClickListener {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_image_folder, container, false)
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init(view)
+        getFolderPath()
+    }
+
+    private fun getFolderPath() {
+        val folderPath = arguments?.getString(ARG_FOLDER_PATH)
+        folderPath?.let {
+            checkPermissions(it)
+        }
+    }
+
+    private fun init(view: View) {
         recyclerView = view.findViewById(R.id.rvImage)
         recyclerView.layoutManager = GridLayoutManager(context, 3)
         adapter = ImageAdapter(this)
         recyclerView.adapter = adapter
         database = AppDatabase.getDatabase(requireContext())
-
-        val folderPath = arguments?.getString(ARG_FOLDER_PATH)
-        folderPath?.let {
-            checkPermissions(it)
-        }
-        return view
     }
 
     private fun loadImagesFromFolder(folderPath: String) {
@@ -92,12 +104,21 @@ class ImageFolderFragment : Fragment(), ImageAdapter.OnImageClickListener {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        val folderPath = arguments?.getString(ARG_FOLDER_PATH)
+        folderPath?.let {
+            loadImagesFromFolder(it)
+        }
+    }
+
     companion object {
         private const val ARG_FOLDER_PATH = FOLDER_PATH
-        fun newInstance(folderPath: String): ImageFolderFragment {
+        fun newInstance(folderPath: String, isRecentTab: Int): ImageFolderFragment {
             val fragment = ImageFolderFragment()
             val args = Bundle()
             args.putString(ARG_FOLDER_PATH, folderPath)
+            args.putInt(POSITION, isRecentTab)
             fragment.arguments = args
             return fragment
         }
@@ -148,8 +169,15 @@ class ImageFolderFragment : Fragment(), ImageAdapter.OnImageClickListener {
         }
     }
 
-
     override fun onImageClick(imagePath: String) {
+        insetImageToDatabase(imagePath)
+        val imageList = adapter.currentList
+        val imagePosition = imageList.indexOf(imagePath)
+        val position = arguments?.getInt(POSITION)
+        toImageDetailsActivity(position, imageList, imagePosition)
+    }
+
+    private fun insetImageToDatabase(imagePath: String) {
         lifecycleScope.launch {
             val existingImage = database.userDao().getImageByPath(imagePath)
             if (existingImage != null) {
@@ -157,11 +185,17 @@ class ImageFolderFragment : Fragment(), ImageAdapter.OnImageClickListener {
             }
             database.userDao().insertRecentImage(ImagePath(path = imagePath))
         }
-
-        val intent = Intent(requireContext(), ImageDetailActivity::class.java)
-        intent.putExtra(IMAGE_PATH, imagePath)
-        startActivity(intent)
     }
 
+    private fun toImageDetailsActivity(
+        position: Int?,
+        imageList: List<String>,
+        imagePosition: Int
+    ) {
+        val intent = Intent(requireContext(), ImageDetailActivity::class.java)
+        intent.putExtra(POSITION, position)
+        intent.putStringArrayListExtra(IMAGE_LIST, ArrayList(imageList))
+        intent.putExtra(IMAGE_POSITION, imagePosition)
+        startActivity(intent)
+    }
 }
-

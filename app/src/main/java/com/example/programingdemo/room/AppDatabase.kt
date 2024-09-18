@@ -9,7 +9,6 @@ import com.example.programingdemo.utlis.Const.USER_DATABASE
 
 @Database(entities = [User::class,ImagePath::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun userDao(): UserDao
 
     companion object {

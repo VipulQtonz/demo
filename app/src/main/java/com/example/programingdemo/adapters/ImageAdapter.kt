@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -30,7 +29,6 @@ class ImageAdapter(
         Glide.with(holder.itemView.context).load(imagePath).override(Target.SIZE_ORIGINAL)
             .into(holder.imageView)
 
-        holder.path.text = imagePath.toString()
         holder.itemView.setOnClickListener {
             onImageClickListener.onImageClick(imagePath)
         }
@@ -38,7 +36,6 @@ class ImageAdapter(
 
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imgRecyclerView)
-        val path: TextView = itemView.findViewById(R.id.tvImagePath)
     }
 
     class DiffCallback : DiffUtil.ItemCallback<String>() {

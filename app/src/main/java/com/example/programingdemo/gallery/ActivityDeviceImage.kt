@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
 
-class ActivityDeviceImage : AppCompatActivity() {
+class ActivityDeviceImage : AppCompatActivity(){
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
     private lateinit var folderPagerAdapter: FolderPagerAdapter
@@ -43,12 +43,12 @@ class ActivityDeviceImage : AppCompatActivity() {
     private fun init() {
         viewPager = findViewById(R.id.vpMain)
         tabLayout = findViewById(R.id.tbMain)
-
         if (hasReadStoragePermission()) {
             setupViewPager()
         } else {
             requestReadStoragePermission()
         }
+
     }
 
     private fun requestReadStoragePermission() {
@@ -56,6 +56,7 @@ class ActivityDeviceImage : AppCompatActivity() {
             requestPermissions(
                 arrayOf(Manifest.permission.READ_MEDIA_IMAGES), REQUEST_CODE_READ_EXTERNAL_STORAGE
             )
+
         } else {
             requestPermissions(
                 arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
@@ -75,13 +76,12 @@ class ActivityDeviceImage : AppCompatActivity() {
     private fun setupViewPager() {
         CoroutineScope(Dispatchers.IO).launch {
             val folderList = getImageFolders()
-
-            folderList.add(0, Pair(RECENT, RECENT.toLowerCase(Locale.ROOT)))
+            folderList.add(0, Pair(RECENT, RECENT.lowercase(Locale.ROOT)))
 
             withContext(Dispatchers.Main) {
-                folderPagerAdapter = FolderPagerAdapter(this@ActivityDeviceImage, folderList)
+                folderPagerAdapter =
+                    FolderPagerAdapter(this@ActivityDeviceImage, folderList)
                 viewPager.adapter = folderPagerAdapter
-
                 TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                     tab.text = folderList[position].first
                 }.attach()
