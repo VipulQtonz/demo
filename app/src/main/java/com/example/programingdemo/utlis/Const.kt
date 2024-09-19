@@ -154,6 +154,21 @@ object Const {
     const val POSITION="position"
 
 
+    // for firebase firestore
+    const val USER_DATABASE_="userDatabase"
+
+
+    //for firebase storage
+    const val DELETE="Delete"
+    const val CANCEL="Cancel"
+    const val DOWNLOAD="Download"
+    const val IMAGE_FOLDER_PATH="images/"
+    const val SELECTION_IMAGE="image/*"
+
+    const val JPG_EXTENSION=".jpg"
+
+    const val ID="id"
+
 
 
 }

@@ -9,10 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.programingdemo.R
 
-class RealtimeDatabaseAdapter(
-    private val items: List<UserProfileInfo>,
+class FirestoreDatabaseAdapter(
+    private var items: List<UserProfileInfo>,
     private val itemClickListener: OnItemClickListener
-) : RecyclerView.Adapter<RealtimeDatabaseAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<FirestoreDatabaseAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val firstName: TextView = itemView.findViewById(R.id.tvFirstName)
@@ -55,10 +55,17 @@ class RealtimeDatabaseAdapter(
         }
     }
 
+    override fun getItemCount(): Int = items.size
+
+    fun updateData(newItems: List<UserProfileInfo>) {
+        items = newItems
+        notifyDataSetChanged()
+    }
+
     interface OnItemClickListener {
         fun onDeleteClick(item: UserProfileInfo)
         fun onUpdateClick(item: UserProfileInfo)
     }
-
-    override fun getItemCount(): Int = items.size
 }
+
+

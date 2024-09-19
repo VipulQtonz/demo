@@ -160,7 +160,7 @@
             android:id="@+id/btnDevicePhotos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/device_images"
+            android:text="@string/image_gallery"
             android:textAllCaps="false" />
 
         <Button
@@ -218,6 +218,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/firebase_firestore"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnFirebaseStorage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/firebase_storage"
             android:textAllCaps="false" />
 
     </LinearLayout>

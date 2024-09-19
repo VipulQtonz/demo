@@ -14,7 +14,6 @@ import com.example.programingdemo.activities.ActivityBottomNavigationBar
 import com.example.programingdemo.activities.ActivityContactList
 import com.example.programingdemo.activities.ActivityContentProvider
 import com.example.programingdemo.activities.ActivityFindSongs
-import com.example.programingdemo.activities.ActivityFirebaseFirestore
 import com.example.programingdemo.activities.ActivityGestures
 import com.example.programingdemo.activities.ActivityImageSlider
 import com.example.programingdemo.activities.ActivityLogin
@@ -34,6 +33,8 @@ import com.example.programingdemo.intent.ActivityExplicitIntentDemoOne
 import com.example.programingdemo.intent.ActivityImplicitIntentDemoOne
 import com.example.programingdemo.intent.ActivityImplicitIntentDemoTwo
 import com.example.programingdemo.intent.ActivityNotificationDemo
+import com.example.programingdemo.realTimeDatabase.ActivityFirebaseStorage
+import com.example.programingdemo.realTimeDatabase.ActivityFirestoreDatabase
 import com.example.programingdemo.realTimeDatabase.ActivityRealTimeDatabase
 import com.example.programingdemo.room.ActivityRoomDatabase
 import com.example.programingdemo.services.ServiceReceivedIntent
@@ -100,6 +101,7 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
         binding.btnMobileNumberVarification.setOnClickListener(this)
         binding.btnRealTimeDatabase.setOnClickListener(this)
         binding.btnFirebaseFirestore.setOnClickListener(this)
+        binding.btnFirebaseStorage.setOnClickListener(this)
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -218,7 +220,10 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
                 startActivity(Intent(this@ActivityMain, ActivityRealTimeDatabase::class.java))
             }
             R.id.btnFirebaseFirestore -> {
-                startActivity(Intent(this@ActivityMain, ActivityFirebaseFirestore::class.java))
+                startActivity(Intent(this@ActivityMain, ActivityFirestoreDatabase::class.java))
+            }
+            R.id.btnFirebaseStorage -> {
+                startActivity(Intent(this@ActivityMain, ActivityFirebaseStorage::class.java))
             }
 
             R.id.btnStaticDemo -> {

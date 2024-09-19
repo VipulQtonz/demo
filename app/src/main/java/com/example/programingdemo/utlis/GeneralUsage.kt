@@ -9,6 +9,9 @@ import com.example.programingdemo.R
 import com.example.programingdemo.data.CallLogItem
 import com.example.programingdemo.data.ChatItem
 import com.example.programingdemo.data.StatusItem
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 @Suppress("DEPRECATION")
@@ -21,6 +24,13 @@ class GeneralUsage(private val context: Context) {
             }
         }
         return false
+    }
+
+    private fun getCurrentDateTime(): String {
+        val currentDate = Date()
+        val dateFormat =
+            SimpleDateFormat("MMM dd, yyyy - hh:mm a", Locale.getDefault())
+        return dateFormat.format(currentDate)
     }
 
     companion object {

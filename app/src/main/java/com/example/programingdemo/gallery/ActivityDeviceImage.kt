@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
 
-class ActivityDeviceImage : AppCompatActivity(){
+class ActivityDeviceImage : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
     private lateinit var folderPagerAdapter: FolderPagerAdapter
@@ -32,7 +32,7 @@ class ActivityDeviceImage : AppCompatActivity(){
         enableEdgeToEdge()
 
         setContentView(R.layout.activity_device_image)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.ActivityDeviceImageMain)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.clActivityDeviceImageMain)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -85,6 +85,8 @@ class ActivityDeviceImage : AppCompatActivity(){
                 TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                     tab.text = folderList[position].first
                 }.attach()
+                viewPager.setPageTransformer(ZoomOutPageTransformer())
+                viewPager.setCurrentItem(1, false)
             }
         }
     }

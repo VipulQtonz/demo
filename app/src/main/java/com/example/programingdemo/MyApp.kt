@@ -14,7 +14,6 @@ import com.example.programingdemo.utlis.GeneralUsage.Companion.checkVersion
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
 class MyApp : Application() {
@@ -22,7 +21,7 @@ class MyApp : Application() {
     companion object {
         lateinit var firebaseAuth: FirebaseAuth
         lateinit var firebaseDatabase: FirebaseDatabase
-        lateinit var firestore: FirebaseFirestore
+//        lateinit var firestore: FirebaseFirestore
         lateinit var firebaseStorage: FirebaseStorage
     }
 
@@ -44,10 +43,9 @@ class MyApp : Application() {
 
     private fun initFirebase() {
         FirebaseApp.initializeApp(this)
-
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseDatabase = FirebaseDatabase.getInstance()
-        firestore = FirebaseFirestore.getInstance()
+//        firestore = FirebaseFirestore.getInstance()
         firebaseStorage = FirebaseStorage.getInstance()
     }
 

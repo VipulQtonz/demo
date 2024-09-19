@@ -23,6 +23,7 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="designed_and_developed_by">Designed and Developed by</string>
     <string name="and">&amp;</string>
+    <string name="mmm_dd_yyyy_hh_mm_a_">MMM dd, yyyy - hh:mm a</string>
     <string name="service_running_all_ready">Service is already running</string>
     <string name="service_running">Service is running</string>
     <string name="flashlight_on">Flashlight ON</string>
@@ -305,4 +306,26 @@
     <string name="_1_">1</string>
     <string name="permission_required_to_access_images">Permission required to access images</string>
     <string name="unable_to_delete_the_image">Unable to delete the image</string>
+    <string name="image_gallery">Image Gallery</string>
+    <string name="failed_to_delete_user">Failed to delete user</string>
+    <string name="user_deleted_successfully">User deleted successfully</string>
+    <string name="error_getting_documents">Error getting documents.</string>
+    <string name="user_added_successfully_with_id">User added successfully with ID: %1$s</string>
+    <string name="failed_to_add_user">Failed to add user</string>
+    <string name="failed_to_update_user">Failed to update user</string>
+    <string name="user_updated_successfully">User updated successfully</string>
+    <string name="no_image_found">no image found!!!</string>
+    <string name="upload">upload</string>
+    <string name="firebase_storage">Firebase Storage</string>
+    <string name="single_image">single image</string>
+    <string name="delete_photo">Delete Photo</string>
+    <string name="image_uploaded_successfully">Image uploaded successfully</string>
+    <string name="image_upload_failed">Image upload failed</string>
+    <string name="failed_to_retrieve_download_url">Failed to retrieve download URL</string>
+    <string name="downloading_image">Downloading Image</string>
+    <string name="image_is_being_downloaded">Image is being downloaded...</string>
+    <string name="download_started">Download started</string>
+    <string name="image_deleted_successfully">Image deleted successfully</string>
+    <string name="image_deleted_failed">Image deleted failed</string>
+    <string name="downloaded_image_jpg">downloaded_image_%1$s.jpg</string>
 </resources>

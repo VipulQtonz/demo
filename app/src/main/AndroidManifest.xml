@@ -14,10 +14,12 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <uses-feature
         android:name="android.hardware.camera.flash"
@@ -47,16 +49,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProgramingDemo"
         tools:targetApi="31">
-
+        <activity
+            android:name=".realTimeDatabase.ActivityFirebaseStorage"
+            android:exported="false" />
         <activity
             android:name=".gallery.ImageDetailActivity"
-            android:exported="false" />
+            android:exported="true"></activity>
         <activity
             android:name=".realTimeDatabase.ActivityFirestoreDatabase"
             android:exported="false" />
-        <activity
-            android:name=".activities.ActivityFirebaseFirestore"
-            android:exported="true" />
         <activity
             android:name=".realTimeDatabase.ActivityRealTimeDatabase"
             android:exported="false" />
@@ -96,20 +97,6 @@
         <activity
             android:name=".activities.ActivityContentProvider"
             android:exported="false" />
-
-        <provider
-            android:name=".contentProvider.ContentProviderMy"
-            android:authorities="com.example.programingdemo.ContentProviderMy"
-            android:enabled="true"
-            android:exported="true"
-            android:grantUriPermissions="true"
-            android:readPermission="com.example.programingdemo.PERMISSION_READ"
-            android:writePermission="com.example.programingdemo.PERMISSION_WRITE">
-            <intent-filter>
-                <action android:name="android.content.Intent.ACTION_PROVIDER" />
-            </intent-filter>
-        </provider>
-
         <activity
             android:name=".activities.ActivityRecyclerView"
             android:exported="false" />
@@ -128,15 +115,6 @@
         <activity
             android:name=".activities.ActivityViewPager"
             android:exported="false" />
-
-        <receiver
-            android:name=".broadCastReceiver.ReceiverStaticBroadcast"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.AIRPLANE_MODE_CHANGED" />
-            </intent-filter>
-        </receiver>
-
         <activity
             android:name=".activities.ActivityAsyncTaskDemo"
             android:exported="false" />
@@ -146,22 +124,6 @@
         <activity
             android:name=".activities.ActivityReceiveFromOtherApplication"
             android:exported="false" />
-
-        <service
-            android:name=".services.ServiceReceivedIntent"
-            android:enabled="true"
-            android:exported="false" />
-
-        <receiver
-            android:name=".broadCastReceiver.ReceiverIntentData"
-            android:enabled="true"
-            android:exported="true"
-            tools:ignore="ExportedReceiver">
-            <intent-filter>
-                <action android:name="com.example.RECEIVER_ACTION" />
-            </intent-filter>
-        </receiver>
-
         <activity
             android:name=".appFlowDemo.ActivityIntroScreen"
             android:exported="false" />
@@ -174,13 +136,6 @@
         <activity
             android:name=".activities.ActivityServiceDemo"
             android:exported="false" />
-
-        <service
-            android:name=".services.ServiceIntent"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.FOREGROUND_SERVICE" />
-
         <activity
             android:name=".sharedPrefrences.ActivitySharedPrefrences"
             android:exported="false" />
@@ -214,6 +169,46 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".services.ServiceIntent"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.FOREGROUND_SERVICE" />
+        <service
+            android:name=".services.ServiceReceivedIntent"
+            android:enabled="true"
+            android:exported="false" />
+
+        <provider
+            android:name=".contentProvider.ContentProviderMy"
+            android:authorities="com.example.programingdemo.ContentProviderMy"
+            android:enabled="true"
+            android:exported="true"
+            android:grantUriPermissions="true"
+            android:readPermission="com.example.programingdemo.PERMISSION_READ"
+            android:writePermission="com.example.programingdemo.PERMISSION_WRITE">
+            <intent-filter>
+                <action android:name="android.content.Intent.ACTION_PROVIDER" />
+            </intent-filter>
+        </provider>
+
+        <receiver
+            android:name=".broadCastReceiver.ReceiverIntentData"
+            android:enabled="true"
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.example.RECEIVER_ACTION" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".broadCastReceiver.ReceiverStaticBroadcast"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.AIRPLANE_MODE_CHANGED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

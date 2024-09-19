@@ -10,6 +10,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.provider.Settings
 import android.view.View
+import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +33,7 @@ class ImageDetailActivity : AppCompatActivity() {
     private var currentImagePosition: Int = 0
     private lateinit var binding: ActivityImageDetailBinding
     private lateinit var database: AppDatabase
+    private lateinit var back: ImageView
     private var isRecentFolder: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,12 +52,16 @@ class ImageDetailActivity : AppCompatActivity() {
     }
 
     private fun addOnClickListener() {
-        binding.tbImageDetails.setOnClickListener { view ->
+        binding.imgMenu.setOnClickListener { view ->
             showPopupMenu(view)
+        }
+        binding.imgBack.setOnClickListener {
+            finish()
         }
     }
 
     private fun init() {
+        back = binding.imgBack
         database = AppDatabase.getDatabase(this)
         imageList =
             intent.getStringArrayListExtra(Const.IMAGE_LIST)?.toMutableList() ?: mutableListOf()
@@ -123,8 +129,7 @@ class ImageDetailActivity : AppCompatActivity() {
                             if (imageList.isNotEmpty()) {
                                 currentImagePosition = position.coerceAtMost(imageList.size - 1)
                                 binding.vpImageDetailsActivity.setCurrentItem(
-                                    currentImagePosition,
-                                    false
+                                    currentImagePosition, false
                                 )
                             } else {
                                 finish()
@@ -134,9 +139,7 @@ class ImageDetailActivity : AppCompatActivity() {
                 } catch (e: SecurityException) {
                     e.printStackTrace()
                     Toast.makeText(
-                        this,
-                        getString(R.string.unable_to_delete_the_image),
-                        Toast.LENGTH_SHORT
+                        this, getString(R.string.unable_to_delete_the_image), Toast.LENGTH_SHORT
                     ).show()
                 }
             }
@@ -155,8 +158,7 @@ class ImageDetailActivity : AppCompatActivity() {
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(
-                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                    REQUEST_CODE_WRITE_STORAGE
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_CODE_WRITE_STORAGE
                 )
             } else {
                 deleteImageFromContentProvider(currentImagePosition)

@@ -16,10 +16,8 @@ class FolderPagerAdapter(
 
     override fun createFragment(position: Int): Fragment {
         val folderPath = folderList[position].second
-
         val fragment = ImageFolderFragment.newInstance(folderPath, position)
         return fragment
-
     }
 }
 

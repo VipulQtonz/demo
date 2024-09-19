@@ -1,6 +1,7 @@
 package com.example.programingdemo.gallery
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -10,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -31,8 +33,12 @@ import java.util.Locale
 
 class ImageFolderFragment : Fragment(), ImageAdapter.OnImageClickListener {
     private lateinit var recyclerView: RecyclerView
+    private lateinit var notFoundGroup: Group
     private lateinit var adapter: ImageAdapter
     private lateinit var database: AppDatabase
+    private lateinit var gridLayoutManager: GridLayoutManager
+//    private lateinit var scaleGestureDetector: ScaleGestureDetector
+//    private var spanCount = 3
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,19 +61,58 @@ class ImageFolderFragment : Fragment(), ImageAdapter.OnImageClickListener {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun init(view: View) {
         recyclerView = view.findViewById(R.id.rvImage)
-        recyclerView.layoutManager = GridLayoutManager(context, 3)
+        notFoundGroup = view.findViewById(R.id.groupNotFound)
+
+//        recyclerView.setOnTouchListener { v, event ->
+//            scaleGestureDetector.onTouchEvent(event)
+//            return@setOnTouchListener true
+//        }
+        // Set initial GridLayoutManager with span count
+        gridLayoutManager = GridLayoutManager(context, 3)
+        recyclerView.layoutManager = gridLayoutManager
         adapter = ImageAdapter(this)
         recyclerView.adapter = adapter
+
         database = AppDatabase.getDatabase(requireContext())
+//        scaleGestureDetector = ScaleGestureDetector(requireContext(), ScaleListener())
     }
 
+
+//    private inner class ScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+//        override fun onScale(detector: ScaleGestureDetector): Boolean {
+//            val scaleFactor = detector.scaleFactor
+//            // Detect zoom in
+//            if (scaleFactor > 1) {
+//                // Increase span count (zoom out effect)
+//                if (spanCount < 6) {
+//                    spanCount++
+//                    gridLayoutManager.spanCount = spanCount
+//                }
+//            } else {
+//                // Decrease span count (zoom in effect)
+//                if (spanCount > 1) {
+//                    spanCount--
+//                    gridLayoutManager.spanCount = spanCount
+//                }
+//            }
+//            return true
+//        }
+//    }
     private fun loadImagesFromFolder(folderPath: String) {
         if (folderPath == RECENT.lowercase(Locale.ROOT)) {
             database.userDao().getAllRecentPhotos().observe(viewLifecycleOwner) { recentImages ->
                 val imagePaths = recentImages.map { it.path }
                 adapter.submitList(imagePaths)
+
+                if (imagePaths.isEmpty()) {
+                    notFoundGroup.visibility = View.VISIBLE
+                } else {
+                    notFoundGroup.visibility = View.GONE
+                    recyclerView.background = null
+                }
             }
         } else {
             CoroutineScope(Dispatchers.IO).launch {
