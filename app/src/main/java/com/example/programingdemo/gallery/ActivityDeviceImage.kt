@@ -85,7 +85,7 @@ class ActivityDeviceImage : AppCompatActivity() {
                 TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                     tab.text = folderList[position].first
                 }.attach()
-                viewPager.setPageTransformer(ZoomOutPageTransformer())
+                viewPager.setPageTransformer(DepthPageTransformer())
                 viewPager.setCurrentItem(1, false)
             }
         }

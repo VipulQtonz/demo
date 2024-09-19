@@ -168,6 +168,8 @@ object Const {
     const val JPG_EXTENSION=".jpg"
 
     const val ID="id"
+    const val PLASH_SCREEN_TIME="PlashScreenTime"
+    const val TAG="TAG"
 
 
 

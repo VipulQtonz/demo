@@ -54,7 +54,7 @@
             android:exported="false" />
         <activity
             android:name=".gallery.ImageDetailActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".realTimeDatabase.ActivityFirestoreDatabase"
             android:exported="false" />

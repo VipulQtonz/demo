@@ -328,4 +328,7 @@
     <string name="image_deleted_successfully">Image deleted successfully</string>
     <string name="image_deleted_failed">Image deleted failed</string>
     <string name="downloaded_image_jpg">downloaded_image_%1$s.jpg</string>
+    <string name="failed_to_fetch_remote_config_using_default_values">Failed to fetch remote config, using default values</string>
+    <string name="config_update_error_with_code">Config update error with code: %1$s</string>
+    <string name="updated_keys">Updated keys: %1$s</string>
 </resources>

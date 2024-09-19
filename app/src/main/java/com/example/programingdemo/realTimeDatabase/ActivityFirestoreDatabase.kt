@@ -124,19 +124,19 @@ class ActivityFirestoreDatabase : AppCompatActivity(),
 //            .orderBy("age")
 //            .limit(10)
             .addSnapshotListener { snapshot, exception ->
-            if (exception != null) {
-                return@addSnapshotListener
-            }
-
-            val dataList = mutableListOf<UserProfileInfo>()
-            snapshot?.let { it ->
-                for (document in it) {
-                    val userProfile = document.toObject(UserProfileInfo::class.java)
-                    userProfile.let { dataList.add(it) }
+                if (exception != null) {
+                    return@addSnapshotListener
                 }
-                _userProfileData.value = dataList
+
+                val dataList = mutableListOf<UserProfileInfo>()
+                snapshot?.let { it ->
+                    for (document in it) {
+                        val userProfile = document.toObject(UserProfileInfo::class.java)
+                        userProfile.let { dataList.add(it) }
+                    }
+                    _userProfileData.value = dataList
+                }
             }
-        }
         userProfileData.observe(this) { dataList ->
             binding.pbMain.visibility = View.GONE
             adapter.updateData(dataList)

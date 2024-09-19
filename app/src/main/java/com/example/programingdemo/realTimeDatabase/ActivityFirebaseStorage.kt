@@ -35,6 +35,9 @@ class ActivityFirebaseStorage : AppCompatActivity(), View.OnClickListener {
             if (uri != null) {
                 binding.imgSelectImage.setImageURI(uri)
                 selectedImageUri = uri
+            } else {
+                binding.imgSelectImage.setImageResource(R.drawable.upload_svg)
+                selectedImageUri = null
             }
         }
     private var permission = 0
@@ -125,12 +128,14 @@ class ActivityFirebaseStorage : AppCompatActivity(), View.OnClickListener {
             storageRef.downloadUrl.addOnSuccessListener {
                 showToast(getString(R.string.image_uploaded_successfully))
                 binding.imgSelectImage.setImageResource(R.drawable.upload_svg)
-                binding.btnUpload.isEnabled = false
+                selectedImageUri = null
                 fetchImagesFromFirebase()
             }.addOnFailureListener {
+                selectedImageUri = null
                 showToast(getString(R.string.image_upload_failed))
             }
         }.addOnFailureListener {
+            selectedImageUri = null
             showToast(getString(R.string.image_upload_failed))
         }
     }
@@ -183,7 +188,6 @@ class ActivityFirebaseStorage : AppCompatActivity(), View.OnClickListener {
         downloadManager.enqueue(request)
         showToast(getString(R.string.download_started))
     }
-
 
     private fun deleteImageFromFirebase(imagePath: String) {
         firebaseStorage.getReferenceFromUrl(imagePath).delete().addOnSuccessListener {

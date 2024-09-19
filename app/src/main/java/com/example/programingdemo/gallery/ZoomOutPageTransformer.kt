@@ -9,8 +9,8 @@ class ZoomOutPageTransformer : ViewPager2.PageTransformer {
             val scaleFactor = Math.max(0.85f, 1 - Math.abs(position))
             val verticalMargin = height * (1 - scaleFactor) / 2
             val horizontalMargin = width * (1 - scaleFactor) / 2
-            translationX = if (position < 0) horizontalMargin - verticalMargin / 2 else horizontalMargin + verticalMargin / 2
-
+            translationX =
+                if (position < 0) horizontalMargin - verticalMargin / 2 else horizontalMargin + verticalMargin / 2
             scaleX = scaleFactor
             scaleY = scaleFactor
 

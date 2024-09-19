@@ -53,6 +53,8 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.storage)
+    implementation(libs.google.firebase.config)
+//    implementation(libs.firebase.config.ktx)
 
     implementation(libs.androidx.room.runtime)
     implementation(libs.firebase.storage.ktx)
