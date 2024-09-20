@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.programingdemo.R
 import com.example.programingdemo.userDetails.ActivityEditUserDetails
 import com.example.programingdemo.utlis.Const.IS_OPEN
+import com.example.programingdemo.utlis.Const.LOGIN_BUTTON_TEXT
 import com.example.programingdemo.utlis.Const.PLASH_SCREEN_TIME
 import com.example.programingdemo.utlis.Const.SHARED_PREF_USER_DETAILS
 import com.example.programingdemo.utlis.Const.TAG
@@ -57,9 +58,10 @@ class ActivitySplashScreen : AppCompatActivity() {
     }
 
     private fun remoteConfigSetUp() {
+//        remoteConfig.reset()
         remoteConfig = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
-            .setMinimumFetchIntervalInSeconds(3000)
+            .setMinimumFetchIntervalInSeconds(0)
             .build()
 
         remoteConfig.setConfigSettingsAsync(configSettings)
@@ -68,9 +70,8 @@ class ActivitySplashScreen : AppCompatActivity() {
         remoteConfig.addOnConfigUpdateListener(object : ConfigUpdateListener {
             override fun onUpdate(configUpdate: ConfigUpdate) {
                 Log.d(TAG, getString(R.string.updated_keys, configUpdate.updatedKeys))
-                if (configUpdate.updatedKeys.contains(PLASH_SCREEN_TIME)) {
+                if (configUpdate.updatedKeys.contains(LOGIN_BUTTON_TEXT)) {
                     remoteConfig.activate().addOnCompleteListener {
-
                     }
                 }
             }
@@ -86,11 +87,39 @@ class ActivitySplashScreen : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     splashDuration = remoteConfig.getLong(PLASH_SCREEN_TIME)
-                    Log.d(TAG, splashDuration.toString())
+                    Log.d(
+                        TAG,
+                        getString(R.string.fetched_login_button_text_from_firebase) + remoteConfig.getString(
+                            LOGIN_BUTTON_TEXT
+                        )
+                    )
+                    Log.d(
+                        TAG,
+                        getString(R.string.fetched_splash_duration_from_firebase) + remoteConfig.getLong(
+                            PLASH_SCREEN_TIME
+                        )
+                            .toString()
+                    )
                 } else {
                     Log.w(
                         TAG,
-                        getString(R.string.failed_to_fetch_remote_config_using_default_values)
+                        getString(R.string.failed_to_fetch_remote_config_using_default_values_),
+                        task.exception
+                    )
+                    // Use default values if fetching fails
+                    splashDuration = remoteConfig.getLong(PLASH_SCREEN_TIME)
+                    Log.d(
+                        TAG,
+                        getString(R.string.fetched_login_button_text_from_default_values) + remoteConfig.getString(
+                            LOGIN_BUTTON_TEXT
+                        )
+                    )
+                    Log.d(
+                        TAG,
+                        getString(R.string.fetched_splash_duration_from_default_values) + remoteConfig.getLong(
+                            PLASH_SCREEN_TIME
+                        )
+                            .toString()
                     )
                 }
                 handler.postDelayed(runnable, splashDuration)

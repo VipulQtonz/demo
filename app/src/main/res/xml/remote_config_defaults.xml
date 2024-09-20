@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <defaults>
-    <long name="PlashScreenTime" value="10000" />
+  <entry>
+    <key>loginButtonText</key>
+    <value>signIn</value>
+  </entry>
+  <entry>
+    <key>PlashScreenTime</key>
+    <value>2000</value>
+  </entry>
 </defaults>

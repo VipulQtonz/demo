@@ -127,24 +127,19 @@ object Const {
     const val ADDRESS_NEW = "address"
     const val NAME = "name"
 
-
     const val RECENT = "Recent"
     const val IMAGE_PATH = "imagePath"
     const val FOLDER_PATH = "folder_path"
-
 
     //room tables
     const val RECENT_PHOTOS = "recentPhotos"
     const val USERS = "users"
 
-
     const val AUTHORITY = "com.example.programingdemo.ContentProviderMy"
     val CONTENT_URI: Uri = Uri.parse("content://$AUTHORITY/mytable")
 
-
     const val IMAGE_LIST = "image_list"
     const val IMAGE_POSITION = "image_position"
-
 
     //for write external storage
     const val REQUEST_CODE_WRITE_STORAGE = 1001
@@ -153,10 +148,8 @@ object Const {
 
     const val POSITION="position"
 
-
     // for firebase firestore
     const val USER_DATABASE_="userDatabase"
-
 
     //for firebase storage
     const val DELETE="Delete"
@@ -169,6 +162,7 @@ object Const {
 
     const val ID="id"
     const val PLASH_SCREEN_TIME="PlashScreenTime"
+    const val LOGIN_BUTTON_TEXT="loginButtonText"
     const val TAG="TAG"
 
 

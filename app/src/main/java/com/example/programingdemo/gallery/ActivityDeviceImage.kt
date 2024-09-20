@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.programingdemo.R
+import com.example.programingdemo.databinding.ActivityDeviceImageBinding
 import com.example.programingdemo.utlis.Const.RECENT
 import com.example.programingdemo.utlis.Const.REQUEST_CODE_READ_EXTERNAL_STORAGE
 import com.google.android.material.tabs.TabLayout
@@ -23,6 +24,7 @@ import kotlinx.coroutines.withContext
 import java.util.Locale
 
 class ActivityDeviceImage : AppCompatActivity() {
+    private lateinit var binding: ActivityDeviceImageBinding
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
     private lateinit var folderPagerAdapter: FolderPagerAdapter
@@ -31,7 +33,8 @@ class ActivityDeviceImage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        setContentView(R.layout.activity_device_image)
+        binding = ActivityDeviceImageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.clActivityDeviceImageMain)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -41,14 +44,13 @@ class ActivityDeviceImage : AppCompatActivity() {
     }
 
     private fun init() {
-        viewPager = findViewById(R.id.vpMain)
-        tabLayout = findViewById(R.id.tbMain)
+        viewPager = binding.vpMain
+        tabLayout = binding.tbMain
         if (hasReadStoragePermission()) {
             setupViewPager()
         } else {
             requestReadStoragePermission()
         }
-
     }
 
     private fun requestReadStoragePermission() {
