@@ -5,7 +5,7 @@
     android:id="@+id/ActivityRealTimeDatabaseMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".realTimeDatabase.ActivityRealTimeDatabase">
+    tools:context=".firebase.ActivityRealTimeDatabase">
 
     <EditText
         android:id="@+id/edtFirstName"
@@ -94,16 +94,32 @@
         android:id="@+id/pbMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSave" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dp_10"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSave">
+
+        <include layout="@layout/shimmer_user_profile_placeholder" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rwMain"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="@dimen/dp_10"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,6 +140,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barrierThree"
         tools:ignore="LabelFor" />
+
 
     <EditText
         android:id="@+id/edtState"
@@ -176,11 +193,11 @@
             android:layout_height="match_parent"
             android:autofillHints=""
             android:background="@android:color/transparent"
+            android:editable="false"
             android:ems="10"
             android:gravity="start"
             android:hint="@string/date_of_birth"
             android:inputType="none"
-            android:editable="false"
             android:padding="@dimen/dp_14"
             android:textColor="@color/black"
             android:textColorHint="@color/waterWhiteTwo"

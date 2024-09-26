@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chat_application"
+    app:startDestination="@id/fragmentLogin">
+
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.example.programingdemo.chatApplication.FragmentLogin"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentChat"
+            app:destination="@id/fragmentChat" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentChat"
+        android:name="com.example.programingdemo.chatApplication.FragmentChat"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
+        <action
+            android:id="@+id/action_fragmentChat_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
+</navigation>

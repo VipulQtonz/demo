@@ -28,22 +28,23 @@ import com.example.programingdemo.activities.ActivityViewPager
 import com.example.programingdemo.activities.ActivityWhatsapp
 import com.example.programingdemo.appFlowDemo.ActivitySplashScreen
 import com.example.programingdemo.databinding.ActivityMainBinding
+import com.example.programingdemo.firebase.ActivityFirebaseStorage
+import com.example.programingdemo.firebase.ActivityFirestoreDatabase
+import com.example.programingdemo.firebase.ActivityRealTimeDatabase
 import com.example.programingdemo.gallery.ActivityDeviceImage
 import com.example.programingdemo.intent.ActivityExplicitIntentDemoOne
 import com.example.programingdemo.intent.ActivityImplicitIntentDemoOne
 import com.example.programingdemo.intent.ActivityImplicitIntentDemoTwo
 import com.example.programingdemo.intent.ActivityNotificationDemo
-import com.example.programingdemo.realTimeDatabase.ActivityFirebaseStorage
-import com.example.programingdemo.realTimeDatabase.ActivityFirestoreDatabase
-import com.example.programingdemo.realTimeDatabase.ActivityRealTimeDatabase
 import com.example.programingdemo.room.ActivityRoomDatabase
 import com.example.programingdemo.services.ServiceReceivedIntent
 import com.example.programingdemo.sharedPrefrences.ActivitySharedPrefrences
 import com.example.programingdemo.userDetails.ActivityEditUserDetails
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.analytics.FirebaseAnalytics
 
 class ActivityMain : AppCompatActivity(), View.OnClickListener {
-
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +60,10 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
         }
 
 //        startForeGroundService()
+//        firebaseAnalytics = Firebase.analytics
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
         addOnClickListener()
+        FirebaseAnalytics.getInstance(this).logEvent("event_name", null)
     }
 
     private fun startForeGroundService() {
@@ -102,6 +106,7 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
         binding.btnRealTimeDatabase.setOnClickListener(this)
         binding.btnFirebaseFirestore.setOnClickListener(this)
         binding.btnFirebaseStorage.setOnClickListener(this)
+        binding.btnAppTest.setOnClickListener(this)
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -210,8 +215,7 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
             R.id.btnMobileNumberVarification -> {
                 startActivity(
                     Intent(
-                        this@ActivityMain,
-                        ActivityMobileNumberVarification::class.java
+                        this@ActivityMain, ActivityMobileNumberVarification::class.java
                     )
                 )
             }
@@ -219,22 +223,35 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
             R.id.btnRealTimeDatabase -> {
                 startActivity(Intent(this@ActivityMain, ActivityRealTimeDatabase::class.java))
             }
+
             R.id.btnFirebaseFirestore -> {
                 startActivity(Intent(this@ActivityMain, ActivityFirestoreDatabase::class.java))
             }
+
             R.id.btnFirebaseStorage -> {
                 startActivity(Intent(this@ActivityMain, ActivityFirebaseStorage::class.java))
             }
 
+            R.id.btnAppTest -> {
+                logAnalyticsEvent("vipul")
+//                throw RuntimeException("Test Crash")
+            }
+
             R.id.btnStaticDemo -> {
                 val snackbar = Snackbar.make(
-                    binding.btnStaticDemo,
-                    getString(R.string.message_sent), Snackbar.LENGTH_LONG
+                    binding.btnStaticDemo, getString(R.string.message_sent), Snackbar.LENGTH_LONG
                 )
-                snackbar.setAction(getString(R.string.undo)) {
-                }
+                snackbar.setAction(getString(R.string.undo)) {}
                 snackbar.show()
             }
         }
     }
+
+    private fun logAnalyticsEvent(eventName: String) {
+        val bundle = Bundle().apply {
+            putString("event", eventName)
+        }
+        firebaseAnalytics.logEvent(eventName, bundle)
+    }
 }
+

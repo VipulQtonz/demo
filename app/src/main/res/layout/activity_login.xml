@@ -44,10 +44,27 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtEmail"
+            android:id="@+id/edtDisplayName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvLogin"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginVertical="@dimen/dp_4"
+            android:autofillHints=""
+            android:background="@drawable/custom_edt_user"
+            android:ems="10"
+            android:hint="@string/display_name"
+            android:inputType="textWebEmailAddress"
+            android:minHeight="@dimen/dp_48"
+            android:padding="@dimen/dp_16"
+            tools:ignore="LabelFor,VisualLintTextFieldSize,TextContrastCheck" />
+
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtDisplayName"
             android:layout_marginHorizontal="@dimen/dp_20"
             android:layout_marginVertical="@dimen/dp_4"
             android:autofillHints=""
@@ -90,6 +107,7 @@
             android:textColor="@color/blue"
             android:textSize="@dimen/sp_16"
             android:textStyle="italic"
+            android:visibility="gone"
             tools:ignore="TouchTargetSizeCheck" />
 
         <ImageView
@@ -112,7 +130,8 @@
             android:layout_marginEnd="@dimen/dp_20"
             android:layout_marginBottom="@dimen/dp_20"
             android:baselineAligned="false"
-            android:gravity="center">
+            android:gravity="center"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/btnLoginWithFacebook"

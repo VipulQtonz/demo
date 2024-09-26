@@ -9,7 +9,7 @@ import com.example.programingdemo.R
 import com.example.programingdemo.data.Contact
 
 class ContactAdapter(
-    private val contacts: List<Contact>,
+    private var contacts: List<Contact>,
     private val onEditClick: (Contact) -> Unit
 ) :
     RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
@@ -31,5 +31,9 @@ class ContactAdapter(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.tvContactName)
+    }
+    fun updateContacts(newContacts: List<Contact>) {
+        contacts = newContacts
+        notifyDataSetChanged()
     }
 }

@@ -70,10 +70,10 @@ class ActivitySplashScreen : AppCompatActivity() {
         remoteConfig.addOnConfigUpdateListener(object : ConfigUpdateListener {
             override fun onUpdate(configUpdate: ConfigUpdate) {
                 Log.d(TAG, getString(R.string.updated_keys, configUpdate.updatedKeys))
-                if (configUpdate.updatedKeys.contains(LOGIN_BUTTON_TEXT)) {
-                    remoteConfig.activate().addOnCompleteListener {
-                    }
-                }
+//                if (configUpdate.updatedKeys.contains(LOGIN_BUTTON_TEXT)) {
+//                    remoteConfig.activate().addOnCompleteListener {
+//                    }
+//                }
             }
 
             override fun onError(error: FirebaseRemoteConfigException) {

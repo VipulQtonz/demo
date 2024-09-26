@@ -11,24 +11,27 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.programingdemo.R
 import com.example.programingdemo.adapters.ContactAdapter
 import com.example.programingdemo.data.Contact
+import com.example.programingdemo.databinding.ActivityContactListBinding
 import com.example.programingdemo.utlis.Const.CONTACT_ID
 import com.example.programingdemo.utlis.Const.CONTACT_NAME
 import com.example.programingdemo.utlis.Const.REQUEST_CODE_READ_CONTACTS
 
 class ActivityContactList : AppCompatActivity() {
+    private lateinit var binding: ActivityContactListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_contact_list)
+        binding = ActivityContactListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.llActivityContactListMain)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        setupRecyclerView()
         checkAndRequestPermissions()
     }
 
@@ -63,18 +66,20 @@ class ActivityContactList : AppCompatActivity() {
             val nameIndex = it.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)
 
             while (it.moveToNext()) {
-                val id = it.getString(idIndex)
-                val name = it.getString(nameIndex)
+                val id = it.getString(idIndex) ?: continue
+                val name = it.getString(nameIndex) ?: continue
                 contactsList.add(Contact(id, name))
             }
         }
-        setupRecyclerView(contactsList)
+
+        if (binding.rvContact.adapter is ContactAdapter) {
+            (binding.rvContact.adapter as ContactAdapter).updateContacts(contactsList)
+        }
     }
 
-    private fun setupRecyclerView(contacts: List<Contact>) {
-        val recyclerView = findViewById<RecyclerView>(R.id.rvContact)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = ContactAdapter(contacts) { contact ->
+    private fun setupRecyclerView() {
+        binding.rvContact.layoutManager = LinearLayoutManager(this)
+        binding.rvContact.adapter = ContactAdapter(emptyList()) { contact ->
             val intent = Intent(this, ActivityEditContact::class.java).apply {
                 putExtra(CONTACT_ID, contact.id)
                 putExtra(CONTACT_NAME, contact.name)
@@ -82,6 +87,7 @@ class ActivityContactList : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -98,5 +104,4 @@ class ActivityContactList : AppCompatActivity() {
             }
         }
     }
-
 }

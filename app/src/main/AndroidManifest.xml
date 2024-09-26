@@ -13,7 +13,9 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -24,11 +26,9 @@
     <uses-feature
         android:name="android.hardware.camera.flash"
         android:required="true" />
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
@@ -51,24 +51,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProgramingDemo"
         tools:targetApi="31">
+
         <activity
-            android:name=".realTimeDatabase.ActivityFirebaseStorage"
+            android:name=".firebase.ActivityFirebaseCloudMessaging"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.ActivityChat"
+            android:exported="false" />
+        <activity
+            android:name=".firebase.ActivityFirebaseStorage"
             android:exported="false" />
         <activity
             android:name=".gallery.ImageDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".realTimeDatabase.ActivityFirestoreDatabase"
+            android:name=".firebase.ActivityFirestoreDatabase"
             android:exported="false" />
         <activity
-            android:name=".realTimeDatabase.ActivityRealTimeDatabase"
+            android:name=".firebase.ActivityRealTimeDatabase"
             android:exported="false" />
         <activity
             android:name=".activities.ActivityMobileNumberVarification"
             android:exported="false" />
         <activity
             android:name=".activities.ActivityLogin"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activities.ActivityNestedRecyclerView"
             android:exported="false" />
@@ -165,11 +178,7 @@
         <activity
             android:name=".ActivityMain"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service
@@ -181,6 +190,13 @@
             android:name=".services.ServiceReceivedIntent"
             android:enabled="true"
             android:exported="false" />
+        <service
+            android:name=".firebase.MyFirebaseMessagingService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <provider
             android:name=".contentProvider.ContentProviderMy"
@@ -211,5 +227,10 @@
                 <action android:name="android.intent.action.AIRPLANE_MODE_CHANGED" />
             </intent-filter>
         </receiver>
+
+        <meta-data
+            android:name="firebase_performance_logcat_enabled"
+            android:value="true" />
     </application>
+
 </manifest>

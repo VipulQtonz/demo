@@ -336,4 +336,7 @@
     <string name="fetched_login_button_text_from_default_values">Fetched Login button Text from default values:</string>
     <string name="fetched_splash_duration_from_default_values">Fetched splash duration from default values:</string>
     <string name="failed_to_fetch_remote_config_using_default_values_">Failed to fetch remote config, using default values</string>
+    <string name="crash_application">Crash Application</string>
+    <string name="send_message">send message</string>
+    <string name="display_name">Display Name</string>
 </resources>

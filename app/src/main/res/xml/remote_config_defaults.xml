@@ -8,4 +8,8 @@
     <key>PlashScreenTime</key>
     <value>2000</value>
   </entry>
+  <entry>
+    <key>splashscreentime</key>
+    <value>2000</value>
+  </entry>
 </defaults>

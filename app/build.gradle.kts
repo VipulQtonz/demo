@@ -3,6 +3,9 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
     id("kotlin-kapt")
+    id("com.google.firebase.crashlytics")
+    id("com.google.firebase.firebase-perf")
+//    id("com.google.devtools.ksp")
 }
 
 android {
@@ -16,9 +19,10 @@ android {
     defaultConfig {
         applicationId = "com.example.programingdemo"
         minSdk = 24
+        //noinspection ExpiredTargetSdkVersion
         targetSdk = 32
         versionCode = 1
-        versionName = "1.0"
+        versionName = "5.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -31,16 +35,27 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    packagingOptions{
+        exclude("META-INF/DEPENDENCIES")
     }
 }
 
 dependencies {
+
+    //for retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.dexter)
+    implementation(libs.google.auth.library.oauth2.http)
 
     implementation(libs.androidx.appcompat.v161)
     implementation(libs.androidx.core.ktx.v1120)
@@ -54,13 +69,24 @@ dependencies {
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.storage)
     implementation(libs.google.firebase.config)
-//    implementation(libs.firebase.config.ktx)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.com.google.firebase.firebase.analytics)
+    implementation(libs.firebase.perf)
+    implementation(libs.google.firebase.perf)
+
 
     implementation(libs.androidx.room.runtime)
     implementation(libs.firebase.storage.ktx)
+    implementation(libs.firebase.messaging.ktx)
+//    implementation(libs.google.firebase.messaging)
+    implementation(libs.firebase.inappmessaging.display)
     annotationProcessor(libs.androidx.room.room.compiler)
+    //noinspection KaptUsageInsteadOfKsp
     kapt(libs.androidx.room.room.compiler)
     implementation(libs.androidx.room.ktx)
+
+    //shimmer effect
+    implementation(libs.shimmer)
 
     implementation(libs.androidx.camera.core)
     implementation(libs.androidx.camera.camera2)
@@ -73,6 +99,7 @@ dependencies {
     implementation(libs.androidx.media3.exoplayer)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    //noinspection KaptUsageInsteadOfKsp
     kapt(libs.compiler)
 
     implementation(libs.kotlinx.coroutines.android)

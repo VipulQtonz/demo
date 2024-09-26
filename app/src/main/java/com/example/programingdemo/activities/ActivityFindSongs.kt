@@ -16,9 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.programingdemo.R
 import com.example.programingdemo.adapters.SongAdapter
 import com.example.programingdemo.data.Song
+import com.example.programingdemo.utlis.Const.REQUEST_CODE
 
 class ActivityFindSongs : AppCompatActivity() {
-    private val REQUEST_CODE = 1
     private var songs = ArrayList<Song>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +30,11 @@ class ActivityFindSongs : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        init()
+    }
+
+    private fun init() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
             == PackageManager.PERMISSION_GRANTED
         ) {

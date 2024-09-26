@@ -1,4 +1,4 @@
-package com.example.programingdemo.realTimeDatabase
+package com.example.programingdemo.firebase
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -14,6 +14,9 @@ import com.example.programingdemo.R
 import com.example.programingdemo.databinding.ActivityRealTimeDatabaseBinding
 import com.example.programingdemo.utlis.Const.SAVE
 import com.example.programingdemo.utlis.Const.UPDATE
+import com.google.firebase.Firebase
+import com.google.firebase.crashlytics.crashlytics
+import com.google.firebase.crashlytics.setCustomKeys
 import java.util.Calendar
 
 class ActivityRealTimeDatabase : AppCompatActivity(), RealtimeDatabaseAdapter.OnItemClickListener {
@@ -21,6 +24,7 @@ class ActivityRealTimeDatabase : AppCompatActivity(), RealtimeDatabaseAdapter.On
     private val viewModel: RealTimeDatabaseViewModel by viewModels()
     private lateinit var adapter: RealtimeDatabaseAdapter
     private var updateId: String? = null
+    val crashlytics = Firebase.crashlytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,12 +45,28 @@ class ActivityRealTimeDatabase : AppCompatActivity(), RealtimeDatabaseAdapter.On
 
     private fun init() {
         binding.rwMain.layoutManager = LinearLayoutManager(this@ActivityRealTimeDatabase)
+        crashlytics.setCustomKeys {
+            key("dateOfBirth", "dateOfBirth")
+//                key("my_bool_key", true)
+//                key("my_double_key", 1.0)
+//                key("my_float_key", 1.0f)
+//                key("my_int_key", 1)
+        }
+
+//        crashlytics.setCustomKeys {
+//            key("my_string_key", "foo")
+//            key("my_bool_key", true)
+//            key("my_double_key", 1.0)
+//            key("my_float_key", 1.0f)
+//            key("my_int_key", 1)
+//        }
     }
 
     private fun addOnClickListener() {
         binding.imgSetDate.setOnClickListener {
             showDatePickerDialog()
         }
+
         binding.btnSave.setOnClickListener {
             val firstName = binding.edtFirstName.text.trim().toString()
             val lastName = binding.edtLastName.text.trim().toString()
@@ -57,9 +77,9 @@ class ActivityRealTimeDatabase : AppCompatActivity(), RealtimeDatabaseAdapter.On
             val dateOfBirth = binding.edtDateOfBirth.text.trim().toString()
 
 
-            if (firstName.isNotEmpty() && lastName.isNotEmpty() && validateEmail() &&
-                city.isNotEmpty() && state.isNotEmpty() && pinCode.isNotEmpty() && dateOfBirth.isNotEmpty()
-            ) {
+
+
+            if (firstName.isNotEmpty() && lastName.isNotEmpty() && validateEmail() && city.isNotEmpty() && state.isNotEmpty() && pinCode.isNotEmpty() && dateOfBirth.isNotEmpty()) {
                 if (updateId != null) {
                     viewModel.updateUserProfile(
                         UserProfileInfo(
@@ -86,7 +106,8 @@ class ActivityRealTimeDatabase : AppCompatActivity(), RealtimeDatabaseAdapter.On
             } else {
                 Toast.makeText(
                     this@ActivityRealTimeDatabase,
-                    getString(R.string.please_enter_data), Toast.LENGTH_SHORT
+                    getString(R.string.please_enter_data),
+                    Toast.LENGTH_SHORT
                 ).show()
             }
         }
@@ -94,7 +115,14 @@ class ActivityRealTimeDatabase : AppCompatActivity(), RealtimeDatabaseAdapter.On
 
     private fun observeData() {
         viewModel.userProfileInfoList.observe(this) { dataList ->
-            showValue(dataList)
+            if (dataList.isEmpty()) {
+                binding.shimmerLayout.visibility = View.VISIBLE
+                binding.rwMain.visibility = View.GONE
+            } else {
+                binding.shimmerLayout.visibility = View.GONE
+                binding.rwMain.visibility = View.VISIBLE
+                showValue(dataList)
+            }
         }
     }
 
@@ -164,12 +192,10 @@ class ActivityRealTimeDatabase : AppCompatActivity(), RealtimeDatabaseAdapter.On
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(
-            this,
-            { _, selectedYear, selectedMonth, selectedDayOfMonth ->
+            this, { _, selectedYear, selectedMonth, selectedDayOfMonth ->
                 val formattedDate = "${selectedDayOfMonth}/${selectedMonth + 1}/${selectedYear}"
                 binding.edtDateOfBirth.setText(formattedDate)
-            },
-            year, month, day
+            }, year, month, day
         )
         datePickerDialog.show()
     }

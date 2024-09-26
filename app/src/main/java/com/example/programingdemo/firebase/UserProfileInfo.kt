@@ -1,4 +1,4 @@
-package com.example.programingdemo.realTimeDatabase
+package com.example.programingdemo.firebase
 
 data class UserProfileInfo(
     val id: String = "",

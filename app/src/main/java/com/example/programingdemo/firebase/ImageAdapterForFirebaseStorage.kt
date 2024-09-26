@@ -1,4 +1,4 @@
-package com.example.programingdemo.realTimeDatabase
+package com.example.programingdemo.firebase
 
 import android.view.LayoutInflater
 import android.view.View

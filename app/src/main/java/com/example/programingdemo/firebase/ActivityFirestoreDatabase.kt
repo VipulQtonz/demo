@@ -1,4 +1,4 @@
-package com.example.programingdemo.realTimeDatabase
+package com.example.programingdemo.firebase
 
 import android.app.DatePickerDialog
 import android.os.Bundle

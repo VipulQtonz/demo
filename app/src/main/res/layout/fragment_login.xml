@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".chatApplication.FragmentLogin">
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:text="@string/login"
+        android:textColor="@color/lightRed"
+        android:textSize="@dimen/sp_30"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLogin"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:layout_marginVertical="@dimen/dp_4"
+        android:autofillHints=""
+        android:background="@drawable/custom_edt_user"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textWebEmailAddress"
+        android:minHeight="@dimen/dp_48"
+        android:padding="@dimen/dp_16"
+        tools:ignore="LabelFor,VisualLintTextFieldSize,TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtEmail"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:layout_marginVertical="@dimen/dp_4"
+        android:autofillHints=""
+        android:background="@drawable/custom_edt_user"
+        android:ems="10"
+        android:hint="@string/password"
+        android:importantForAccessibility="no"
+        android:inputType="numberPassword"
+        android:minHeight="@dimen/dp_48"
+        android:padding="@dimen/dp_16"
+        tools:ignore="LabelFor,TextContrastCheck,TextFields,VisualLintTextFieldSize" />
+
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtPassword"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:text="@string/forgot_password"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/sp_16"
+        android:textStyle="italic"
+        android:visibility="gone"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ImageView
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_80"
+        android:layout_below="@id/tvForgotPassword"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/round_arrow_right_svg"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+</RelativeLayout>
