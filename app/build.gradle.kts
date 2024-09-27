@@ -52,6 +52,7 @@ android {
 dependencies {
 
     //for retrofit
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.dexter)

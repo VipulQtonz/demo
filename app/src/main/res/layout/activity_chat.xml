@@ -7,6 +7,38 @@
     android:layout_height="match_parent"
     tools:context=".activities.ActivityChat">
 
+    <LinearLayout
+        android:id="@+id/llTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/greenNew"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/dp_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_10"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvEmailId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_10"
+            android:text="@string/login"
+            android:textColor="@color/waterWhite"
+            android:textSize="@dimen/sp_16"
+             />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rwChat"
         android:layout_width="match_parent"
@@ -17,7 +49,7 @@
         app:layout_constraintBottom_toTopOf="@id/clSearchView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/llTitleBar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clSearchView"

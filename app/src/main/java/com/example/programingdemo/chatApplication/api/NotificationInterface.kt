@@ -12,6 +12,6 @@ interface NotificationInterface {
 
     fun notification(
         @Body message: Notification,
-        @Header("Authorization") token: String // Pass the token as a header
+        @Header("Authorization") token: String
     ): Call<Notification>
 }

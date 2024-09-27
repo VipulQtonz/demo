@@ -165,9 +165,13 @@ object Const {
     const val LOGIN_BUTTON_TEXT="loginButtonText"
     const val TAG="TAG"
 
-
     const val REQUEST_CODE = 1
 
+    //for chatapplication
+    const val CHAT_DATA="ChatData"
+    const val CHAT_USER="ChatUser"
 
+    const val USER_DATA_CHAT="userData"
+    const val USER_NAME="userName"
 
 }

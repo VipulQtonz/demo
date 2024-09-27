@@ -11,7 +11,6 @@ import com.example.programingdemo.data.UserMessage
 
 class ChatAdapter(
     private val messageList: List<UserMessage>,
-    private val currentUserId: String
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val VIEW_TYPE_RIGHT = 1
@@ -19,31 +18,32 @@ class ChatAdapter(
 
     override fun getItemViewType(position: Int): Int {
         val message = messageList[position]
-        return if (message.userId == currentUserId) VIEW_TYPE_RIGHT else VIEW_TYPE_LEFT
+        return if (isCurrentUserMessage(message)) VIEW_TYPE_RIGHT else VIEW_TYPE_LEFT
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == VIEW_TYPE_RIGHT) {
-            val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.message_right, parent, false)
-            RightMessageViewHolder(view)
-        } else {
-            val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.message_left, parent, false)
-            LeftMessageViewHolder(view)
-        }
+        val layoutId =
+            if (viewType == VIEW_TYPE_RIGHT) R.layout.message_right else R.layout.message_left
+        val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
+        return if (viewType == VIEW_TYPE_RIGHT) RightMessageViewHolder(view) else LeftMessageViewHolder(
+            view
+        )
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val message = messageList[position]
         if (holder is RightMessageViewHolder) {
             holder.bind(message)
-        } else {
-            (holder as LeftMessageViewHolder).bind(message)
+        } else if (holder is LeftMessageViewHolder) {
+            holder.bind(message)
         }
     }
 
     override fun getItemCount() = messageList.size
+
+    private fun isCurrentUserMessage(message: UserMessage): Boolean {
+        return message.isCurrentUser == true
+    }
 
     inner class RightMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(message: UserMessage) {
@@ -54,7 +54,6 @@ class ChatAdapter(
     inner class LeftMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(message: UserMessage) {
             itemView.findViewById<TextView>(R.id.tvLeft).text = message.message
-            itemView.findViewById<TextView>(R.id.tvUserNameLeft).text = message.userName
         }
     }
 }

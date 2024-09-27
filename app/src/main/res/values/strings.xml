@@ -339,4 +339,10 @@
     <string name="crash_application">Crash Application</string>
     <string name="send_message">send message</string>
     <string name="display_name">Display Name</string>
+    <string name="user_name">User Name</string>
+    <string name="user_example_com">user@example.com</string>
+    <string name="failed_to_send_notification">Failed to send notification: %1$s</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="failed_to_add_data">Failed to add data</string>
+    <string name="user_id_is_null_cannot_save_to_firestore">User ID is null. Cannot save to Firestore.</string>
 </resources>

@@ -1,10 +1,11 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.programingdemo.activities
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import android.os.StrictMode
-import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
@@ -23,8 +24,13 @@ import com.example.programingdemo.chatApplication.api.Message
 import com.example.programingdemo.chatApplication.api.Notification
 import com.example.programingdemo.chatApplication.api.NotificationAPI
 import com.example.programingdemo.chatApplication.api.NotificationContent
+import com.example.programingdemo.data.UserData
 import com.example.programingdemo.data.UserMessage
 import com.example.programingdemo.databinding.ActivityChatBinding
+import com.example.programingdemo.utlis.Const.CHAT_DATA
+import com.example.programingdemo.utlis.Const.CHAT_USER
+import com.example.programingdemo.utlis.Const.USER_DATA_CHAT
+import com.example.programingdemo.utlis.Const.USER_NAME
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -32,16 +38,15 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.karumi.dexter.Dexter
-import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ActivityChat : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
@@ -50,11 +55,14 @@ class ActivityChat : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var recyclerView: RecyclerView
     private lateinit var chatAdapter: ChatAdapter
+    private var receiverToken: String? = null
+    private var receiverUserId: String? = null
     private var userName: String? = null
     private var messageList: MutableList<UserMessage> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.clActivityChatMain)) { v, insets ->
@@ -62,169 +70,186 @@ class ActivityChat : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         init()
+        getChatData()
         setupRecyclerView()
         findDisplayNameOfCurrentUserFromFirestore()
         loadMessagesFromFirebase()
+        requestPermissions()
+        buttonClickEvent()
+
+    }
+
+    private fun buttonClickEvent() {
         sendButton.setOnClickListener {
             sendNotification()
             if (message.text.trim().toString().isNotEmpty()) {
-                val userMessage = UserMessage(
-                    userId = firebaseAuth.currentUser!!.uid,
-                    userName = userName.toString(),
-                    message = message.text.trim().toString()
-                )
-                val data = firebaseDatabase.getReference("ChatData")
-                data.push().setValue(userMessage).addOnCompleteListener { task ->
+                val userMessage = receiverUserId?.let { it1 ->
+                    UserMessage(
+                        userId = it1,
+                        userName = userName.toString(),
+                        message = message.text.trim().toString(),
+                        isCurrentUser = true
+                    )
+                }
+                val data = receiverUserId?.let { it1 ->
+                    firebaseDatabase.getReference(CHAT_DATA).child(firebaseAuth.currentUser!!.uid)
+                        .child(
+                            it1
+                        )
+                }
+                data!!.push().setValue(userMessage).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         message.text.clear()
-                    } else {
-                        Log.e("Firebase", "Failed to add data", task.exception)
+                        saveDataInBackground(userMessage)
                     }
                 }
             }
         }
+    }
 
-        //FOR NOTIFICATION
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            Dexter.withContext(applicationContext)
-                .withPermissions(Manifest.permission.POST_NOTIFICATIONS)
-                .withListener(object : PermissionListener, MultiplePermissionsListener {
-                    override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                    }
+    private fun saveDataInBackground(userMessage: UserMessage?) {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (userMessage != null) {
+                val data = UserMessage(
+                    userId = userMessage.userId,
+                    userName = userMessage.userName,
+                    message = userMessage.message,
+                    isCurrentUser = false
+                )
 
-                    override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                    }
+                val chatReference = receiverUserId?.let {
+                    firebaseDatabase.getReference(CHAT_DATA).child(it)
+                        .child(firebaseAuth.currentUser!!.uid)
+                }
+                chatReference?.push()?.setValue(data)
+            }
+        }
+    }
 
-                    override fun onPermissionRationaleShouldBeShown(
-                        p0: PermissionRequest?,
-                        p1: PermissionToken?
-                    ) {
-                    }
-
-                    override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
-                    }
-
-                    override fun onPermissionRationaleShouldBeShown(
-                        p0: MutableList<PermissionRequest>?,
-                        p1: PermissionToken?
-                    ) {
-                        p1?.continuePermissionRequest()
-                    }
-                }).check()
+    private fun getChatData() {
+        val userData = intent.getSerializableExtra(USER_DATA_CHAT) as? UserData
+        userData?.let {
+            receiverToken = it.token
+            receiverUserId = it.userId
+            binding.tvUserName.text = it.userName
+            binding.tvEmailId.text = it.email
 
         }
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
-//        FirebaseMessaging.getInstance().subscribeToTopic("test")
     }
 
     private fun sendNotification() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val notification = receiverToken?.let { createNotification(it) }
+            if (notification != null) {
+                try {
+                    val accessToken = AccessToken.getAccessTokenAsync()
+                    if (accessToken != null) {
+                        val response = NotificationAPI.sendNotification()
+                            .notification(notification, "Bearer $accessToken")
+                            .execute()
 
-        val token =
-            "eq4ZZcOTTyWVuF1cqQgeZn:APA91bHEwJ3QfaCDjSLFeSijTT2zTDSml99ev6r0OH4oxyZBUlDi7wsX102FO51z6W5v_PliDXsUbaxE4ySfxS8UccVqAJehwQkRxg1mB1jXR21gV2LlI007bJUZGdM-i__QFDiR7aq2"
-        val notification = createNotification(token)
-        val accessToken = AccessToken.getAccessToken()
-        NotificationAPI.sendNotification().notification(notification, "Bearer $accessToken")
-            .enqueue(
-                object : Callback<Notification> {
-                    override fun onResponse(
-                        call: Call<Notification>,
-                        response: Response<Notification>
-                    ) {
-                        if (response.isSuccessful) {
-                            Toast.makeText(
-                                this@ActivityChat,
-                                "Notification sent successfully",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            Log.e(
-                                "NotificationError",
-                                "Failed to send notification: ${response.errorBody()?.string()}"
-                            )
+                        withContext(Dispatchers.Main) {
+                            if (!response.isSuccessful) {
+                                val errorMsg =
+                                    response.errorBody()?.string()
+                                        ?: getString(R.string.unknown_error)
+                                Toast.makeText(
+                                    this@ActivityChat,
+                                    getString(R.string.failed_to_send_notification, errorMsg),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
                     }
-
-                    override fun onFailure(call: Call<Notification>, t: Throwable) {
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
                         Toast.makeText(
-                            this@ActivityChat,
-                            "Failed to send notification",
-                            Toast.LENGTH_SHORT
+                            this@ActivityChat, "${e.message}", Toast.LENGTH_SHORT
                         ).show()
-                        Log.e("NotificationError", "Error: ${t.message}", t)
                     }
                 }
-            )
+            }
+        }
     }
 
-    private fun createNotification(token: String): Notification {
-        val notificationContent = NotificationContent(
-            title = "vipul",
-            body = binding.edtMessage.text.toString()
-        )
 
+    private fun requestPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Dexter.withContext(this)
+                .withPermission(Manifest.permission.POST_NOTIFICATIONS)
+                .withListener(object : PermissionListener {
+                    override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+                    }
+
+                    override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                    }
+
+                    override fun onPermissionRationaleShouldBeShown(
+                        permission: PermissionRequest?, token: PermissionToken?
+                    ) {
+                        token?.continuePermissionRequest()
+                    }
+                }).check()
+        }
+    }
+
+
+    private fun createNotification(token: String): Notification? {
+        val notificationContent = userName?.let {
+            NotificationContent(
+                title = it, body = binding.edtMessage.text.toString()
+            )
+        }
         val additionalData = mapOf(
             "key1" to "value1",
             "key2" to "value2"
         )
 
-        val message = Message(
-            token = token,
-            notification = notificationContent,
-            data = additionalData
-        )
-
-        return Notification(message)
+        val message = notificationContent?.let {
+            Message(
+                token = token, notification = it, data = additionalData
+            )
+        }
+        return message?.let { Notification(it) }
     }
-
 
     private fun findDisplayNameOfCurrentUserFromFirestore() {
         val userId = firebaseAuth.currentUser?.uid
-        Log.e("idName", userId.toString())
-
         if (userId != null) {
-            val userDocRef = db.collection("ChatUser").document(userId)
-            userDocRef.get()
-                .addOnSuccessListener { documentSnapshot ->
-                    if (documentSnapshot.exists()) {
-                        val displayName = documentSnapshot.getString("userName")
-                        if (displayName != null) {
-                            userName = displayName
-                            Log.d("Firestore", "User name found: $displayName")
-                        } else {
-                            Log.e("Firestore", "Display name (userName) not found in document")
-                        }
-                    } else {
-                        Log.e("Firestore", "User document does not exist in ChatUser collection")
+            val userDocRef = db.collection(CHAT_USER).document(userId)
+            userDocRef.get().addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    val displayName = documentSnapshot.getString(USER_NAME)
+                    if (displayName != null) {
+                        userName = displayName
                     }
                 }
-                .addOnFailureListener { exception ->
-                    Log.e("Firestore", "Error fetching document", exception)
-                }
-        } else {
-            Log.e("Firestore", "User is not logged in")
+            }
         }
     }
 
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        chatAdapter = ChatAdapter(messageList, firebaseAuth.currentUser!!.uid)
+        chatAdapter = ChatAdapter(messageList)
         recyclerView.adapter = chatAdapter
     }
 
     private fun loadMessagesFromFirebase() {
-        val data = firebaseDatabase.getReference("ChatData")
-        data.addValueEventListener(object : ValueEventListener {
+        val data = receiverUserId?.let {
+            firebaseDatabase.getReference(CHAT_DATA).child(firebaseAuth.currentUser!!.uid).child(
+                it
+            )
+        }
+        data!!.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 messageList.clear()
                 for (messageSnapshot in snapshot.children) {
                     val message = messageSnapshot.getValue(UserMessage::class.java)
                     if (message != null) {
                         messageList.add(message)
-                        Log.d("FirebaseData", "Message added: ${message.message}")
-                    } else {
-                        Log.e("FirebaseData", "Message could not be parsed")
                     }
                 }
 
@@ -235,7 +260,6 @@ class ActivityChat : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-
             }
         })
     }
@@ -246,6 +270,7 @@ class ActivityChat : AppCompatActivity() {
         message = binding.edtMessage
         sendButton = binding.imgSendMessage
         recyclerView = binding.rwChat
+
     }
 
 }

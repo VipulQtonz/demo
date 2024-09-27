@@ -4,19 +4,22 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-<!--    <TextView-->
-<!--        android:id="@+id/tvUserNameRight"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:gravity="end"-->
-<!--        android:text=""-->
-<!--        android:textColor="@color/blue" />-->
-
     <TextView
         android:id="@+id/tvRight"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        android:text="" />
+        android:layout_gravity="end"
+        android:background="@drawable/chat_bg_right"
+        android:paddingHorizontal="@dimen/dp_10"
+        android:text="hello"
+        android:textSize="@dimen/sp_20" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text=""
+        android:textColor="@color/blue" />
 
 </LinearLayout>

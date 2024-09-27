@@ -51,11 +51,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProgramingDemo"
         tools:targetApi="31">
-
+        <activity
+            android:name=".activities.ActivityChatUser"
+            android:exported="false" />
         <activity
             android:name=".firebase.ActivityFirebaseCloudMessaging"
             android:exported="false" />
-
         <activity
             android:name=".activities.ActivityChat"
             android:exported="false" />
