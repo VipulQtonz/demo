@@ -66,41 +66,14 @@ class ImageFolderFragment : Fragment(), ImageAdapter.OnImageClickListener {
         recyclerView = view.findViewById(R.id.rvImage)
         notFoundGroup = view.findViewById(R.id.groupNotFound)
 
-//        recyclerView.setOnTouchListener { v, event ->
-//            scaleGestureDetector.onTouchEvent(event)
-//            return@setOnTouchListener true
-//        }
-        // Set initial GridLayoutManager with span count
         gridLayoutManager = GridLayoutManager(context, 3)
         recyclerView.layoutManager = gridLayoutManager
         adapter = ImageAdapter(this)
         recyclerView.adapter = adapter
 
         database = AppDatabase.getDatabase(requireContext())
-//        scaleGestureDetector = ScaleGestureDetector(requireContext(), ScaleListener())
     }
 
-
-//    private inner class ScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
-//        override fun onScale(detector: ScaleGestureDetector): Boolean {
-//            val scaleFactor = detector.scaleFactor
-//            // Detect zoom in
-//            if (scaleFactor > 1) {
-//                // Increase span count (zoom out effect)
-//                if (spanCount < 6) {
-//                    spanCount++
-//                    gridLayoutManager.spanCount = spanCount
-//                }
-//            } else {
-//                // Decrease span count (zoom in effect)
-//                if (spanCount > 1) {
-//                    spanCount--
-//                    gridLayoutManager.spanCount = spanCount
-//                }
-//            }
-//            return true
-//        }
-//    }
     private fun loadImagesFromFolder(folderPath: String) {
         if (folderPath == RECENT.lowercase(Locale.ROOT)) {
             database.userDao().getAllRecentPhotos().observe(viewLifecycleOwner) { recentImages ->
@@ -243,4 +216,5 @@ class ImageFolderFragment : Fragment(), ImageAdapter.OnImageClickListener {
         intent.putExtra(IMAGE_POSITION, imagePosition)
         startActivity(intent)
     }
+
 }

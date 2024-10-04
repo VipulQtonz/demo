@@ -107,6 +107,7 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
         binding.btnFirebaseFirestore.setOnClickListener(this)
         binding.btnFirebaseStorage.setOnClickListener(this)
         binding.btnAppTest.setOnClickListener(this)
+        binding.btnChatApplication.setOnClickListener(this)
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -230,6 +231,10 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
 
             R.id.btnFirebaseStorage -> {
                 startActivity(Intent(this@ActivityMain, ActivityFirebaseStorage::class.java))
+            }
+
+            R.id.btnChatApplication -> {
+                startActivity(Intent(this@ActivityMain, ActivityLogin::class.java))
             }
 
             R.id.btnAppTest -> {

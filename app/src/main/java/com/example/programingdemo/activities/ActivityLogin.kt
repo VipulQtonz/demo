@@ -71,7 +71,6 @@ class ActivityLogin : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-
     private fun addOnClickListener() {
         signUpButton.setOnClickListener(this)
         loginWithGoogle.setOnClickListener(this)
@@ -107,14 +106,17 @@ class ActivityLogin : AppCompatActivity(), View.OnClickListener {
             firebaseAuthWithGoogle(account)
         } catch (e: ApiException) {
             Toast.makeText(
-                this, getString(R.string.google_sign_in_failed_, e.message), Toast.LENGTH_SHORT
+                this,
+                getString(R.string.google_sign_in_failed_, e.message),
+                Toast.LENGTH_SHORT
             ).show()
         }
     }
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(this) { task ->
+        firebaseAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT)
                     .show()

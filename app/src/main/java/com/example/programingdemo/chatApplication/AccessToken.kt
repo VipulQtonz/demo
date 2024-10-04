@@ -23,8 +23,8 @@ object AccessToken {
                     "  \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ujxi2%40demoprojects-c7203.iam.gserviceaccount.com\",\n" +
                     "  \"universe_domain\": \"googleapis.com\"\n" +
                     "}\n"
-            val stream = ByteArrayInputStream(jsonString.toByteArray(StandardCharsets.UTF_8))
 
+            val stream = ByteArrayInputStream(jsonString.toByteArray(StandardCharsets.UTF_8))
             val googleCredentials = GoogleCredentials.fromStream(stream)
                 .createScoped(arrayListOf(FIREBASE_MESSAGE_SCOPE))
 

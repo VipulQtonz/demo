@@ -77,12 +77,7 @@
             android:exported="false" />
         <activity
             android:name=".activities.ActivityLogin"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".activities.ActivityNestedRecyclerView"
             android:exported="false" />
@@ -179,7 +174,10 @@
         <activity
             android:name=".ActivityMain"
             android:exported="true">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <service
@@ -191,9 +189,11 @@
             android:name=".services.ServiceReceivedIntent"
             android:enabled="true"
             android:exported="false" />
+
         <service
             android:name=".firebase.MyFirebaseMessagingService"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

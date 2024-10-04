@@ -155,11 +155,11 @@ class ActivityChat : AppCompatActivity() {
                                 val errorMsg =
                                     response.errorBody()?.string()
                                         ?: getString(R.string.unknown_error)
-                                Toast.makeText(
-                                    this@ActivityChat,
-                                    getString(R.string.failed_to_send_notification, errorMsg),
-                                    Toast.LENGTH_SHORT
-                                ).show()
+//                                Toast.makeText(
+//                                    this@ActivityChat,
+//                                    getString(R.string.failed_to_send_notification, errorMsg),
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
                             }
                         }
                     }
@@ -242,6 +242,7 @@ class ActivityChat : AppCompatActivity() {
                 it
             )
         }
+
         data!!.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -264,7 +265,6 @@ class ActivityChat : AppCompatActivity() {
         })
     }
 
-
     private fun init() {
         db = Firebase.firestore
         message = binding.edtMessage
@@ -272,5 +272,4 @@ class ActivityChat : AppCompatActivity() {
         recyclerView = binding.rwChat
 
     }
-
 }

@@ -345,4 +345,5 @@
     <string name="unknown_error">Unknown error</string>
     <string name="failed_to_add_data">Failed to add data</string>
     <string name="user_id_is_null_cannot_save_to_firestore">User ID is null. Cannot save to Firestore.</string>
+    <string name="chat_application">Chat Application</string>
 </resources>
