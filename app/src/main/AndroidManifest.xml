@@ -52,6 +52,9 @@
         android:theme="@style/Theme.ProgramingDemo"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ActivityCustomRecyclerView"
+            android:exported="false" />
+        <activity
             android:name=".activities.ActivityChatUser"
             android:exported="false" />
         <activity
@@ -176,6 +179,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -189,11 +193,9 @@
             android:name=".services.ServiceReceivedIntent"
             android:enabled="true"
             android:exported="false" />
-
         <service
             android:name=".firebase.MyFirebaseMessagingService"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

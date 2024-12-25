@@ -13,6 +13,7 @@ import com.example.programingdemo.activities.ActivityAsyncTaskDemo
 import com.example.programingdemo.activities.ActivityBottomNavigationBar
 import com.example.programingdemo.activities.ActivityContactList
 import com.example.programingdemo.activities.ActivityContentProvider
+import com.example.programingdemo.activities.ActivityCustomRecyclerView
 import com.example.programingdemo.activities.ActivityFindSongs
 import com.example.programingdemo.activities.ActivityGestures
 import com.example.programingdemo.activities.ActivityImageSlider
@@ -108,6 +109,7 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
         binding.btnFirebaseStorage.setOnClickListener(this)
         binding.btnAppTest.setOnClickListener(this)
         binding.btnChatApplication.setOnClickListener(this)
+        binding.btnCustomRecyclerView.setOnClickListener(this)
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -235,6 +237,10 @@ class ActivityMain : AppCompatActivity(), View.OnClickListener {
 
             R.id.btnChatApplication -> {
                 startActivity(Intent(this@ActivityMain, ActivityLogin::class.java))
+            }
+
+            R.id.btnCustomRecyclerView -> {
+                startActivity(Intent(this@ActivityMain, ActivityCustomRecyclerView::class.java))
             }
 
             R.id.btnAppTest -> {
